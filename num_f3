@@ -234,150 +234,86 @@ if (count($transitions) > 0) {
     }
 }
 
-$_SESSION['name_result']['dynamics'] = [
-    'sequence' => $allNameNumbers,
-    'transitions' => $transitions,
-    'analysis' => $dynamicAnalysis
-];
-// ==================== КОРРЕКЦИЯ ИМЕНИ ====================
-$corrections = [];
-
-// Анализируем "острые углы" характера
-if ($nameNumber == 1 || $soulNumber == 1 || $personalityNumber == 1) {
-    $corrections[] = "Уменьшительные формы (Саша, Шурик) смягчат жесткость Единицы, добавят мягкости в общение.";
-}
-if ($nameNumber == 3 || $soulNumber == 3 || $personalityNumber == 3) {
-    $corrections[] = "Более сдержанные формы имени помогут сконцентрироваться и доводить дела до конца.";
-}
-if ($nameNumber == 4 || $soulNumber == 4 || $personalityNumber == 4) {
-    $corrections[] = "Использование более мягких форм имени (Димон вместо Дмитрий) добавит гибкости и лёгкости.";
-}
-if ($nameNumber == 5 || $soulNumber == 5 || $personalityNumber == 5) {
-    $corrections[] = "Более устойчивые формы имени помогут найти баланс между свободой и ответственностью.";
-}
-if ($nameNumber == 6 || $soulNumber == 6 || $personalityNumber == 6) {
-    $corrections[] = "Использование полного имени (Екатерина вместо Катя) поможет выстроить личные границы.";
-}
-if ($nameNumber == 7 || $soulNumber == 7 || $personalityNumber == 7) {
-    $corrections[] = "Более тёплые, уменьшительные формы помогут открыться миру и людям.";
-}
-if ($nameNumber == 8 || $soulNumber == 8 || $personalityNumber == 8) {
-    $corrections[] = "Мягкие, домашние формы имени смягчат властность и добавят человечности.";
-}
-if ($nameNumber == 9 || $soulNumber == 9 || $personalityNumber == 9) {
-    $corrections[] = "Более приземлённые формы имени помогут сохранять связь с реальностью.";
-}
-
-// Общие рекомендации
-if (in_array($nameNumber, $missingNumbers)) {
-    $corrections[] = "Добавление в обращение имени, содержащего отсутствующее число, поможет развить недостающее качество.";
-}
-if (count($missingNumbers) > 2) {
-    $corrections[] = "Попробуйте использовать разные формы имени (полное, уменьшительное, отчество) в разных сферах жизни для баланса энергий.";
-}
-
-$_SESSION['name_result']['corrections'] = $corrections;
-// ==================== ЧИСЛО СУДЬБЫ ====================
-// Сумма числа имени и числа души (уже есть как karmic, но можно иначе)
-$destinyNumber = reduceNumber($nameNumber + $soulNumber + $personalityNumber);
-
-$destinyMeanings = [
-    1 => 'Судьба лидера. Ваш путь — проявлять инициативу, создавать новое, вести за собой.',
-    2 => 'Судьба дипломата. Ваш путь — создавать гармонию, объединять людей, быть миротворцем.',
-    3 => 'Судьба творца. Ваш путь — самовыражение, вдохновение, радость творчества.',
-    4 => 'Судьба созидателя. Ваш путь — строить, создавать порядок, быть опорой.',
-    5 => 'Судьба исследователя. Ваш путь — путешествовать, открывать новое, быть свободным.',
-    6 => 'Судьба хранителя. Ваш путь — заботиться, любить, создавать семью.',
-    7 => 'Судьба мыслителя. Ваш путь — познавать истину, искать глубину, делиться мудростью.',
-    8 => 'Судьба реализатора. Ваш путь — достигать успеха, управлять, создавать материальные ценности.',
-    9 => 'Судьба мудреца. Ваш путь — служить, завершать циклы, нести свет.',
-    11 => 'Судьба проводника. Ваш путь — развивать интуицию, помогать людям на духовном пути.',
-    22 => 'Судьба мастера. Ваш путь — строить масштабные проекты, оставлять след в истории.',
-    33 => 'Судьба учителя. Ваш путь — нести любовь, исцелять, просвещать.'
-];
-
-$_SESSION['name_result']['destiny'] = [
-    'number' => $destinyNumber,
-    'meaning' => $destinyMeanings[$destinyNumber] ?? 'Познание себя и мира'
-];
-// ==================== ЧИСЛО СКРЫТОГО ПОТЕНЦИАЛА ====================
-// Сумма числа личности и числа судьбы
-$hiddenPotential = reduceNumber($personalityNumber + $destinyNumber);
-
-$potentialMeanings = [
-    1 => 'Ваш скрытый потенциал — лидерство. В трудных ситуациях вы способны взять управление на себя.',
-    2 => 'Ваш скрытый потенциал — дипломатия. Вы способны уладить любой конфликт.',
-    3 => 'Ваш скрытый потенциал — творчество. В вас живёт нераскрытый талант.',
-    4 => 'Ваш скрытый потенциал — надёжность. Вы способны создать устойчивую систему.',
-    5 => 'Ваш скрытый потенциал — адаптивность. Вы выживете в любых обстоятельствах.',
-    6 => 'Ваш скрытый потенциал — забота. Вы способны исцелять души.',
-    7 => 'Ваш скрытый потенциал — мудрость. Вы способны видеть суть вещей.',
-    8 => 'Ваш скрытый потенциал — управление. Вы способны создавать материальное из идей.',
-    9 => 'Ваш скрытый потенциал — служение. Вы способны вдохновлять и вести за собой.',
-    11 => 'Ваш скрытый потенциал — ясновидение. Развивайте интуицию.',
-    22 => 'Ваш скрытый потенциал — созидание империй. Масштаб — ваша стихия.',
-    33 => 'Ваш скрытый потенциал — безусловная любовь. Вы способны исцелять.'
-];
-
-$_SESSION['name_result']['hidden_potential'] = [
-    'number' => $hiddenPotential,
-    'meaning' => $potentialMeanings[$hiddenPotential] ?? 'Раскройте свою уникальность'
-];
-    /////////////////////////////////
+$_SESSION['name_result'] = [
+    'firstname' => $firstName,
+    'numbers' => [
+        'name' => $nameNumber,
+        'soul' => $soulNumber,
+        'personality' => $personalityNumber,
+        'karmic' => $karmicNumber
+    ],
+    'interpretations' => [
+        'name' => [
+            'title' => $nameInterpretation['title'] ?? 'Лидер',
+            'essence' => $nameInterpretation['essence'] ?? $nameInterpretation['name']['essence'] ?? 'Описание характера',
+            'strengths' => $nameInterpretation['strengths'] ?? $nameInterpretation['name']['strengths'] ?? 'Сильные стороны',
+            'weaknesses' => $nameInterpretation['weaknesses'] ?? $nameInterpretation['name']['weaknesses'] ?? 'Слабые стороны',
+            'in_shadow' => $nameInterpretation['in_shadow'] ?? $nameInterpretation['name']['in_shadow'] ?? 'Теневая сторона'
+        ],
+        'soul' => [
+            'title' => $soulInterpretation['title'] ?? 'Загадочная душа',
+            'essence' => $soulInterpretation['essence'] ?? $soulInterpretation['soul']['essence'] ?? 'Описание души',
+            'desires' => $soulInterpretation['desires'] ?? $soulInterpretation['soul']['desires'] ?? 'Желания',
+            'fears' => $soulInterpretation['fears'] ?? $soulInterpretation['soul']['fears'] ?? 'Страхи'
+        ],
+        'personality' => [
+            'title' => $personalityInterpretation['title'] ?? 'Индивидуальность',
+            'essence' => $personalityInterpretation['essence'] ?? $personalityInterpretation['personality']['essence'] ?? 'Описание личности',
+            'image' => $personalityInterpretation['image'] ?? $personalityInterpretation['personality']['image'] ?? 'Образ',
+            'first_impression' => $personalityInterpretation['first_impression'] ?? $personalityInterpretation['personality']['first_impression'] ?? 'Первое впечатление'
+        ],
+        'karmic' => [
+            'title' => $karmicInterpretation['title'] ?? 'Кармическая задача',
+            'tasks' => $karmicInterpretation['karmic']['tasks'] ?? $karmicInterpretation['karmic_tasks'] ?? ['Познание себя'],
+            'lesson' => $karmicInterpretation['karmic']['lesson'] ?? $karmicInterpretation['karmic_lesson'] ?? 'Главный урок'
+        ]
+    ],
+    'additional' => $additional,
+    'total' => [
+        'value' => $totalNumber,
+        'title' => $totalData['title'],
+        'short' => $totalData['short'],
+        'full' => $totalData['full'],
+        'advice' => $totalData['advice']
+    ],
     
-    // 4. Получаем расшифровку для суммарного числа
-    $totalData = $totalMeanings[$totalNumber] ?? [
-        'title' => 'Искатель',
-        'short' => 'Ваш путь уникален.',
-        'full' => 'Ваше суммарное число открывает особый путь познания себя и мира. Исследуйте, развивайтесь, доверяйте своей интуиции.',
-        'advice' => 'Будьте внимательны к знакам судьбы и не бойтесь своего пути.'
-    ];
+    // ========== НОВЫЕ РАСШИРЕННЫЕ ПАРАМЕТРЫ ==========
     
-    // 5. ТЕПЕРЬ сохраняем всё в сессию (все переменные уже определены)
-    $_SESSION['name_result'] = [
-        'firstname' => $firstName,
-        'numbers' => [
-            'name' => $nameNumber,
-            'soul' => $soulNumber,
-            'personality' => $personalityNumber,
-            'karmic' => $karmicNumber
-        ],
-        'interpretations' => [
-            'name' => [
-                'title' => $nameInterpretation['title'] ?? 'Лидер',
-                'essence' => $nameInterpretation['essence'] ?? $nameInterpretation['name']['essence'] ?? 'Описание характера',
-                'strengths' => $nameInterpretation['strengths'] ?? $nameInterpretation['name']['strengths'] ?? 'Сильные стороны',
-                'weaknesses' => $nameInterpretation['weaknesses'] ?? $nameInterpretation['name']['weaknesses'] ?? 'Слабые стороны',
-                'in_shadow' => $nameInterpretation['in_shadow'] ?? $nameInterpretation['name']['in_shadow'] ?? 'Теневая сторона'
-            ],
-            'soul' => [
-                'title' => $soulInterpretation['title'] ?? 'Загадочная душа',
-                'essence' => $soulInterpretation['essence'] ?? $soulInterpretation['soul']['essence'] ?? 'Описание души',
-                'desires' => $soulInterpretation['desires'] ?? $soulInterpretation['soul']['desires'] ?? 'Желания',
-                'fears' => $soulInterpretation['fears'] ?? $soulInterpretation['soul']['fears'] ?? 'Страхи'
-            ],
-            'personality' => [
-                'title' => $personalityInterpretation['title'] ?? 'Индивидуальность',
-                'essence' => $personalityInterpretation['essence'] ?? $personalityInterpretation['personality']['essence'] ?? 'Описание личности',
-                'image' => $personalityInterpretation['image'] ?? $personalityInterpretation['personality']['image'] ?? 'Образ',
-                'first_impression' => $personalityInterpretation['first_impression'] ?? $personalityInterpretation['personality']['first_impression'] ?? 'Первое впечатление'
-            ],
-            'karmic' => [
-                'title' => $karmicInterpretation['title'] ?? 'Кармическая задача',
-                'tasks' => $karmicInterpretation['karmic']['tasks'] ?? $karmicInterpretation['karmic_tasks'] ?? ['Познание себя'],
-                'lesson' => $karmicInterpretation['karmic']['lesson'] ?? $karmicInterpretation['karmic_lesson'] ?? 'Главный урок'
-            ]
-        ],
-        'additional' => $additional,
-        'total' => [
-            'value' => $totalNumber,
-            'title' => $totalData['title'],
-            'short' => $totalData['short'],
-            'full' => $totalData['full'],
-            'advice' => $totalData['advice']
-        ],
-        'calculated_at' => date('d.m.Y H:i:s')
-    ];
+    'spectrum' => [
+        'all_numbers' => $allNameNumbers,
+        'counts' => $spectrum,
+        'dominant' => $dominantNumbers,
+        'dominant_text' => $dominantText,
+        'missing' => $missingNumbers,
+        'missing_text' => $missingText,
+        'balance' => $balanceText
+    ],
+    
+    'subconscious' => [
+        'number' => $subconsciousNumber,
+        'meaning' => $subconsciousMeanings[$subconsciousNumber] ?? 'Ваше подсознание уникально. Доверяйте своей интуиции.'
+    ],
+    
+    'dynamics' => [
+        'sequence' => $allNameNumbers,
+        'transitions' => $transitions,
+        'analysis' => $dynamicAnalysis
+    ],
+    
+    'corrections' => $corrections,
+    
+    'destiny' => [
+        'number' => $destinyNumber,
+        'meaning' => $destinyMeanings[$destinyNumber] ?? 'Познание себя и мира'
+    ],
+    
+    'hidden_potential' => [
+        'number' => $hiddenPotential,
+        'meaning' => $potentialMeanings[$hiddenPotential] ?? 'Раскройте свою уникальность'
+    ],
+    
+    'calculated_at' => date('d.m.Y H:i:s')
+];
     
     // 6. Редирект
     header('Location: ' . ABS_PATH . 'name');
