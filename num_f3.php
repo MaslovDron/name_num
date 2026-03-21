@@ -176,7 +176,48 @@ if ($nameNumber == $soulNumber) {
     if (isset($interpretations['combinations'][$combinationKey])) {
         $_SESSION['name_result']['combination'] = $interpretations['combinations'][$combinationKey];
     }
-}    
+}
+// Проверяем другие совпадения чисел
+$combinations = [];
+
+if ($nameNumber == $personalityNumber && $nameNumber != $soulNumber) {
+    $combinations[] = [
+        'type' => 'Имя = Личность',
+        'text' => 'Ваши число имени и число личности совпадают. Вы живёте в гармонии с собой — ваше внутреннее и внешнее едины.'
+    ];
+}
+
+if ($nameNumber == $karmicNumber && $nameNumber != $soulNumber) {
+    $combinations[] = [
+        'type' => 'Имя = Кармическое',
+        'text' => 'Ваше число имени совпадает с кармическим числом. Ваша личность и кармические задачи идут рука об руку.'
+    ];
+}
+
+if ($soulNumber == $personalityNumber && $soulNumber != $nameNumber) {
+    $combinations[] = [
+        'type' => 'Душа = Личность',
+        'text' => 'Ваши число души и число личности совпадают. Вы искренни и открыты — внутреннее совпадает с внешним.'
+    ];
+}
+
+if ($soulNumber == $karmicNumber && $soulNumber != $nameNumber) {
+    $combinations[] = [
+        'type' => 'Душа = Кармическое',
+        'text' => 'Ваши число души и кармическое число совпадают. Ваши желания соответствуют вашим кармическим задачам.'
+    ];
+}
+
+if ($personalityNumber == $karmicNumber && $personalityNumber != $nameNumber && $personalityNumber != $soulNumber) {
+    $combinations[] = [
+        'type' => 'Личность = Кармическое',
+        'text' => 'Ваши число личности и кармическое число совпадают. То, как вас видят другие, соответствует вашим кармическим задачам.'
+    ];
+}
+
+if (!empty($combinations)) {
+    $_SESSION['name_result']['additional_combinations'] = $combinations;
+}   
     // Получаем интерпретации для каждого числа
     $nameInterpretation = $interpretations[$nameNumber] ?? $interpretations[1];
     $soulInterpretation = $interpretations[$soulNumber] ?? $interpretations[1];
