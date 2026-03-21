@@ -1,4 +1,6 @@
- 'special_mission' => 'Миссия — познавать глубины и приносить знание в мир. Быть мостом между неведомым и человечеством. Открывать истины, которые продвигают эволюцию.',
+        'description' => 'Такие люди способны на великие открытия, потому что видят глубже и дальше других. Но плата за это — одиночество и отчуждённость. Им трудно с людьми, трудно в быту, трудно с простыми радостями. Их ум — и дар, и проклятие.',
+        
+        'special_mission' => 'Миссия — познавать глубины и приносить знание в мир. Быть мостом между неведомым и человечеством. Открывать истины, которые продвигают эволюцию.',
         
         'karmic_lesson' => 'Соединить ум с сердцем. Понять, что знание без любви — холодное и опасное. Научиться применять свои открытия в реальной жизни, делиться ими с другими, не замыкаться.',
         
@@ -243,19 +245,19 @@ $corrections = [];
 
 // Анализируем "острые углы" характера
 if ($nameNumber == 1 || $soulNumber == 1 || $personalityNumber == 1) {
-    $corrections[] = "Уменьшительные формы (Саша, Шурик) смягчат жесткость Единицы, добавят мягкости в общение.";
+    $corrections[] = "Уменьшительные формы смягчат жесткость Единицы, добавят мягкости в общение.";
 }
 if ($nameNumber == 3 || $soulNumber == 3 || $personalityNumber == 3) {
     $corrections[] = "Более сдержанные формы имени помогут сконцентрироваться и доводить дела до конца.";
 }
 if ($nameNumber == 4 || $soulNumber == 4 || $personalityNumber == 4) {
-    $corrections[] = "Использование более мягких форм имени (Димон вместо Дмитрий) добавит гибкости и лёгкости.";
+    $corrections[] = "Использование более мягких форм имени добавит гибкости и лёгкости.";
 }
 if ($nameNumber == 5 || $soulNumber == 5 || $personalityNumber == 5) {
     $corrections[] = "Более устойчивые формы имени помогут найти баланс между свободой и ответственностью.";
 }
 if ($nameNumber == 6 || $soulNumber == 6 || $personalityNumber == 6) {
-    $corrections[] = "Использование полного имени (Екатерина вместо Катя) поможет выстроить личные границы.";
+    $corrections[] = "Использование полного имени поможет выстроить личные границы.";
 }
 if ($nameNumber == 7 || $soulNumber == 7 || $personalityNumber == 7) {
     $corrections[] = "Более тёплые, уменьшительные формы помогут открыться миру и людям.";
@@ -318,31 +320,54 @@ $_SESSION['name_result'] = [
         'karmic' => $karmicNumber
     ],
     'interpretations' => [
-        'name' => [
-            'title' => $nameInterpretation['title'] ?? 'Лидер',
-            'essence' => $nameInterpretation['essence'] ?? $nameInterpretation['name']['essence'] ?? 'Описание характера',
-            'strengths' => $nameInterpretation['strengths'] ?? $nameInterpretation['name']['strengths'] ?? 'Сильные стороны',
-            'weaknesses' => $nameInterpretation['weaknesses'] ?? $nameInterpretation['name']['weaknesses'] ?? 'Слабые стороны',
-            'in_shadow' => $nameInterpretation['in_shadow'] ?? $nameInterpretation['name']['in_shadow'] ?? 'Теневая сторона'
-        ],
-        'soul' => [
-            'title' => $soulInterpretation['title'] ?? 'Загадочная душа',
-            'essence' => $soulInterpretation['essence'] ?? $soulInterpretation['soul']['essence'] ?? 'Описание души',
-            'desires' => $soulInterpretation['desires'] ?? $soulInterpretation['soul']['desires'] ?? 'Желания',
-            'fears' => $soulInterpretation['fears'] ?? $soulInterpretation['soul']['fears'] ?? 'Страхи'
-        ],
-        'personality' => [
-            'title' => $personalityInterpretation['title'] ?? 'Индивидуальность',
-            'essence' => $personalityInterpretation['essence'] ?? $personalityInterpretation['personality']['essence'] ?? 'Описание личности',
-            'image' => $personalityInterpretation['image'] ?? $personalityInterpretation['personality']['image'] ?? 'Образ',
-            'first_impression' => $personalityInterpretation['first_impression'] ?? $personalityInterpretation['personality']['first_impression'] ?? 'Первое впечатление'
-        ],
-        'karmic' => [
-            'title' => $karmicInterpretation['title'] ?? 'Кармическая задача',
-            'tasks' => $karmicInterpretation['karmic']['tasks'] ?? $karmicInterpretation['karmic_tasks'] ?? ['Познание себя'],
-            'lesson' => $karmicInterpretation['karmic']['lesson'] ?? $karmicInterpretation['karmic_lesson'] ?? 'Главный урок'
-        ]
+    'name' => [
+        'title' => $nameInterpretation['title'] ?? 'Лидер',
+        'essence' => $nameInterpretation['essence'] ?? $nameInterpretation['name']['essence'] ?? 'Описание характера',
+        'strengths' => $nameInterpretation['strengths'] ?? $nameInterpretation['name']['strengths'] ?? 'Сильные стороны',
+        'weaknesses' => $nameInterpretation['weaknesses'] ?? $nameInterpretation['name']['weaknesses'] ?? 'Слабые стороны',
+        'in_shadow' => $nameInterpretation['in_shadow'] ?? $nameInterpretation['name']['in_shadow'] ?? 'Теневая сторона',
+        // ДОБАВЛЯЕМ НОВЫЕ ПОЛЯ:
+        'mythology' => $nameInterpretation['mythology'] ?? '',
+        'archetype' => $nameInterpretation['archetype'] ?? '',
+        'sacred' => $nameInterpretation['sacred'] ?? '',
+        'life' => $nameInterpretation['life'] ?? [],
+        'intensity' => $nameInterpretation['intensity'] ?? [],
+        'ages' => $nameInterpretation['ages'] ?? [],
+        'celebrities' => $nameInterpretation['celebrities'] ?? '',
+        'compatibility_matrix' => $nameInterpretation['compatibility_matrix'] ?? [],
+        'recommendations' => $nameInterpretation['recommendations'] ?? [],
+        'mission' => $nameInterpretation['mission'] ?? '',
+        'keywords' => $nameInterpretation['keywords'] ?? '',
+        'affirmations' => $nameInterpretation['affirmations'] ?? []
     ],
+    'soul' => [
+        'title' => $soulInterpretation['title'] ?? 'Загадочная душа',
+        'essence' => $soulInterpretation['essence'] ?? $soulInterpretation['soul']['essence'] ?? 'Описание души',
+        'desires' => $soulInterpretation['desires'] ?? $soulInterpretation['soul']['desires'] ?? 'Желания',
+        'fears' => $soulInterpretation['fears'] ?? $soulInterpretation['soul']['fears'] ?? 'Страхи',
+        // ДОБАВЛЯЕМ ПОЛЯ ДЛЯ ДУШИ
+        'mythology' => $soulInterpretation['mythology'] ?? '',
+        'archetype' => $soulInterpretation['archetype'] ?? '',
+        'sacred' => $soulInterpretation['sacred'] ?? ''
+    ],
+    'personality' => [
+        'title' => $personalityInterpretation['title'] ?? 'Индивидуальность',
+        'essence' => $personalityInterpretation['essence'] ?? $personalityInterpretation['personality']['essence'] ?? 'Описание личности',
+        'image' => $personalityInterpretation['image'] ?? $personalityInterpretation['personality']['image'] ?? 'Образ',
+        'first_impression' => $personalityInterpretation['first_impression'] ?? $personalityInterpretation['personality']['first_impression'] ?? 'Первое впечатление',
+        // ДОБАВЛЯЕМ ПОЛЯ ДЛЯ ЛИЧНОСТИ
+        'mythology' => $personalityInterpretation['mythology'] ?? '',
+        'archetype' => $personalityInterpretation['archetype'] ?? ''
+    ],
+    'karmic' => [
+        'title' => $karmicInterpretation['title'] ?? 'Кармическая задача',
+        'tasks' => $karmicInterpretation['karmic']['tasks'] ?? $karmicInterpretation['karmic_tasks'] ?? ['Познание себя'],
+        'lesson' => $karmicInterpretation['karmic']['lesson'] ?? $karmicInterpretation['karmic_lesson'] ?? 'Главный урок',
+        // ДОБАВЛЯЕМ ПОЛЯ ДЛЯ КАРМИЧЕСКОГО
+        'mythology' => $karmicInterpretation['mythology'] ?? '',
+        'archetype' => $karmicInterpretation['archetype'] ?? ''
+    ]
+],
     'additional' => $additional,
     'total' => [
         'value' => $totalNumber,
@@ -400,4 +425,5 @@ $_SESSION['name_result'] = [
     exit;
     }
 }
+// выводим результат на фронте
 ?>
