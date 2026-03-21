@@ -2,8 +2,7 @@
 include 'app/include/config.php';
 include 'app/include/connect.php';
 include 'app/include/functions-front.php';
-include 'app/controllers/PifagorController.php';
-
+include 'app/controllers/NameController.php';
 // Проверяем, есть ли результаты в сессии
 if(!isset($_SESSION['name_result'])) {
     header('Location: name-form.php');
@@ -21,6 +20,9 @@ $dynamics = $result['dynamics'] ?? [];
 $corrections = $result['corrections'] ?? [];
 $destiny = $result['destiny'] ?? [];
 $hiddenPotential = $result['hidden_potential'] ?? [];
+
+// Получаем цену из базы
+$imya = selectOne('calc', ['id'=>10]);
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -108,6 +110,42 @@ $hiddenPotential = $result['hidden_potential'] ?? [];
             </div>
         </div>
         
+        <!-- ==================== УСИЛЕННЫЙ АРХЕТИП (имя = душа) ==================== -->
+        <?php if(isset($result['combination']) && !empty($result['combination'])): ?>
+        <div class="additional-analysis">
+            <h2 class="section-title"><i class="fas fa-star"></i> Усиленный архетип</h2>
+            <div class="quality-card" style="border-left-color: #f39c12;">
+                <div class="quality-title" style="font-size: 24px;"><?= $result['combination']['title'] ?></div>
+                <div class="quality-text"><?= $result['combination']['description'] ?></div>
+            </div>
+        </div>
+        <?php endif; ?>
+        
+        <!-- ==================== ДОПОЛНИТЕЛЬНЫЕ СОВПАДЕНИЯ ==================== -->
+        <?php if(isset($result['additional_combinations']) && !empty($result['additional_combinations'])): ?>
+        <div class="additional-analysis">
+            <h2 class="section-title"><i class="fas fa-handshake"></i> Совпадения чисел</h2>
+            <?php foreach($result['additional_combinations'] as $comb): ?>
+            <div class="quality-card">
+                <div class="quality-title"><?= $comb['type'] ?></div>
+                <div class="quality-text"><?= $comb['text'] ?></div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+        <?php endif; ?>
+
+        <!-- ==================== ДОПОЛНИТЕЛЬНЫЕ СОВПАДЕНИЯ ==================== -->
+        <?php if(isset($result['additional_combinations']) && !empty($result['additional_combinations'])): ?>
+        <div class="additional-analysis">
+            <h2 class="section-title"><i class="fas fa-handshake"></i> Совпадения чисел</h2>
+            <?php foreach($result['additional_combinations'] as $comb): ?>
+            <div class="quality-card">
+                <div class="quality-title"><?= $comb['type'] ?></div>
+                <div class="quality-text"><?= $comb['text'] ?></div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+        <?php endif; ?>        
         <!-- ==================== ЧИСЛО ИМЕНИ ==================== -->
         <div class="interpretations">
             <h2 class="section-title"><i class="fas fa-chart-bar"></i> Число имени (<?= $numbers['name'] ?>)</h2>
@@ -210,6 +248,7 @@ $hiddenPotential = $result['hidden_potential'] ?? [];
                 <div class="quality-title"><?= $interpretations['soul']['title'] ?? 'Загадочная душа' ?></div>
                 <div class="quality-text"><?= $interpretations['soul']['essence'] ?? 'Описание души' ?></div>
                 
+                <!-- Желания и страхи -->
                 <?php if(isset($interpretations['soul']['desires'])): ?>
                 <div class="quality-details" style="margin-top: 15px;">
                     <div><strong>💭 Желания:</strong> <?= $interpretations['soul']['desires'] ?></div>
@@ -217,12 +256,62 @@ $hiddenPotential = $result['hidden_potential'] ?? [];
                 </div>
                 <?php endif; ?>
                 
+                <!-- Мифология -->
                 <?php if(!empty($interpretations['soul']['mythology'])): ?>
                 <div style="margin-top: 15px; padding: 12px; background: #f9f5f0; border-radius: 15px;">
                     <div><strong>🏛️ Мифология:</strong> <?= $interpretations['soul']['mythology'] ?></div>
                     <?php if(!empty($interpretations['soul']['archetype'])): ?>
                     <div style="margin-top: 8px;"><strong>🎭 Архетип:</strong> <?= $interpretations['soul']['archetype'] ?></div>
                     <?php endif; ?>
+                </div>
+                <?php endif; ?>
+                
+                <!-- Сильные и слабые стороны -->
+                <?php if(!empty($interpretations['soul']['strengths'])): ?>
+                <div class="quality-details" style="margin-top: 15px;">
+                    <div><strong>💪 Сильные стороны:</strong> <?= $interpretations['soul']['strengths'] ?></div>
+                    <div style="margin-top: 8px;"><strong>⚠️ Слабые стороны:</strong> <?= $interpretations['soul']['weaknesses'] ?></div>
+                    <div style="margin-top: 8px;"><strong>🌑 Теневая сторона:</strong> <?= $interpretations['soul']['in_shadow'] ?></div>
+                </div>
+                <?php endif; ?>
+                
+                <!-- Профессии -->
+                <?php if(!empty($interpretations['soul']['life']['profession']['text'])): ?>
+                <div style="margin-top: 15px;">
+                    <strong>💼 Профессии:</strong> <?= $interpretations['soul']['life']['profession']['text'] ?>
+                </div>
+                <?php endif; ?>
+                
+                <!-- Знаменитости -->
+                <?php if(!empty($interpretations['soul']['celebrities'])): ?>
+                <div style="margin-top: 15px;">
+                    <strong>⭐ Знаменитости:</strong> <?= $interpretations['soul']['celebrities'] ?>
+                </div>
+                <?php endif; ?>
+                
+                <!-- Миссия -->
+                <?php if(!empty($interpretations['soul']['mission'])): ?>
+                <div style="margin-top: 15px; background: #f0e4d6; padding: 12px; border-radius: 15px;">
+                    <strong>🎯 Миссия:</strong> <?= $interpretations['soul']['mission'] ?>
+                </div>
+                <?php endif; ?>
+                
+                <!-- Ключевые слова -->
+                <?php if(!empty($interpretations['soul']['keywords'])): ?>
+                <div style="margin-top: 15px;">
+                    <strong>🔑 Ключевые слова:</strong> <?= $interpretations['soul']['keywords'] ?>
+                </div>
+                <?php endif; ?>
+                
+                <!-- Аффирмации -->
+                <?php if(!empty($interpretations['soul']['affirmations'])): ?>
+                <div style="margin-top: 15px;">
+                    <strong>📿 Аффирмации:</strong>
+                    <ul style="margin-top: 5px; margin-left: 20px;">
+                        <?php foreach($interpretations['soul']['affirmations'] as $affirmation): ?>
+                        <li><?= $affirmation ?></li>
+                        <?php endforeach; ?>
+                    </ul>
                 </div>
                 <?php endif; ?>
             </div>
@@ -235,6 +324,7 @@ $hiddenPotential = $result['hidden_potential'] ?? [];
                 <div class="quality-title"><?= $interpretations['personality']['title'] ?? 'Индивидуальность' ?></div>
                 <div class="quality-text"><?= $interpretations['personality']['essence'] ?? 'Описание личности' ?></div>
                 
+                <!-- Образ и первое впечатление -->
                 <?php if(isset($interpretations['personality']['image'])): ?>
                 <div class="quality-details" style="margin-top: 15px;">
                     <div><strong>🎭 Образ:</strong> <?= $interpretations['personality']['image'] ?></div>
@@ -242,12 +332,62 @@ $hiddenPotential = $result['hidden_potential'] ?? [];
                 </div>
                 <?php endif; ?>
                 
+                <!-- Мифология -->
                 <?php if(!empty($interpretations['personality']['mythology'])): ?>
                 <div style="margin-top: 15px; padding: 12px; background: #f9f5f0; border-radius: 15px;">
                     <div><strong>🏛️ Мифология:</strong> <?= $interpretations['personality']['mythology'] ?></div>
                     <?php if(!empty($interpretations['personality']['archetype'])): ?>
                     <div style="margin-top: 8px;"><strong>🎭 Архетип:</strong> <?= $interpretations['personality']['archetype'] ?></div>
                     <?php endif; ?>
+                </div>
+                <?php endif; ?>
+                
+                <!-- Сильные и слабые стороны -->
+                <?php if(!empty($interpretations['personality']['strengths'])): ?>
+                <div class="quality-details" style="margin-top: 15px;">
+                    <div><strong>💪 Сильные стороны:</strong> <?= $interpretations['personality']['strengths'] ?></div>
+                    <div style="margin-top: 8px;"><strong>⚠️ Слабые стороны:</strong> <?= $interpretations['personality']['weaknesses'] ?></div>
+                    <div style="margin-top: 8px;"><strong>🌑 Теневая сторона:</strong> <?= $interpretations['personality']['in_shadow'] ?></div>
+                </div>
+                <?php endif; ?>
+                
+                <!-- Профессии -->
+                <?php if(!empty($interpretations['personality']['life']['profession']['text'])): ?>
+                <div style="margin-top: 15px;">
+                    <strong>💼 Профессии:</strong> <?= $interpretations['personality']['life']['profession']['text'] ?>
+                </div>
+                <?php endif; ?>
+                
+                <!-- Знаменитости -->
+                <?php if(!empty($interpretations['personality']['celebrities'])): ?>
+                <div style="margin-top: 15px;">
+                    <strong>⭐ Знаменитости:</strong> <?= $interpretations['personality']['celebrities'] ?>
+                </div>
+                <?php endif; ?>
+                
+                <!-- Миссия -->
+                <?php if(!empty($interpretations['personality']['mission'])): ?>
+                <div style="margin-top: 15px; background: #f0e4d6; padding: 12px; border-radius: 15px;">
+                    <strong>🎯 Миссия:</strong> <?= $interpretations['personality']['mission'] ?>
+                </div>
+                <?php endif; ?>
+                
+                <!-- Ключевые слова -->
+                <?php if(!empty($interpretations['personality']['keywords'])): ?>
+                <div style="margin-top: 15px;">
+                    <strong>🔑 Ключевые слова:</strong> <?= $interpretations['personality']['keywords'] ?>
+                </div>
+                <?php endif; ?>
+                
+                <!-- Аффирмации -->
+                <?php if(!empty($interpretations['personality']['affirmations'])): ?>
+                <div style="margin-top: 15px;">
+                    <strong>📿 Аффирмации:</strong>
+                    <ul style="margin-top: 5px; margin-left: 20px;">
+                        <?php foreach($interpretations['personality']['affirmations'] as $affirmation): ?>
+                        <li><?= $affirmation ?></li>
+                        <?php endforeach; ?>
+                    </ul>
                 </div>
                 <?php endif; ?>
             </div>
@@ -259,8 +399,14 @@ $hiddenPotential = $result['hidden_potential'] ?? [];
             <div class="quality-card">
                 <div class="quality-title"><?= $interpretations['karmic']['title'] ?? 'Кармическая задача' ?></div>
                 
+                <!-- Суть -->
+                <?php if(!empty($interpretations['karmic']['essence'])): ?>
+                <div class="quality-text"><?= $interpretations['karmic']['essence'] ?></div>
+                <?php endif; ?>
+                
+                <!-- Задачи -->
                 <?php if(isset($interpretations['karmic']['tasks'])): ?>
-                <div class="quality-text">
+                <div class="quality-text" style="margin-top: 15px;">
                     <strong>📜 Задачи:</strong>
                     <ul style="margin-top: 10px; margin-left: 20px;">
                         <?php foreach($interpretations['karmic']['tasks'] as $task): ?>
@@ -273,9 +419,59 @@ $hiddenPotential = $result['hidden_potential'] ?? [];
                 </div>
                 <?php endif; ?>
                 
+                <!-- Мифология -->
                 <?php if(!empty($interpretations['karmic']['mythology'])): ?>
                 <div style="margin-top: 15px; padding: 12px; background: #f9f5f0; border-radius: 15px;">
                     <div><strong>🏛️ Мифология:</strong> <?= $interpretations['karmic']['mythology'] ?></div>
+                </div>
+                <?php endif; ?>
+                
+                <!-- Сильные и слабые стороны -->
+                <?php if(!empty($interpretations['karmic']['strengths'])): ?>
+                <div class="quality-details" style="margin-top: 15px;">
+                    <div><strong>💪 Сильные стороны:</strong> <?= $interpretations['karmic']['strengths'] ?></div>
+                    <div style="margin-top: 8px;"><strong>⚠️ Слабые стороны:</strong> <?= $interpretations['karmic']['weaknesses'] ?></div>
+                    <div style="margin-top: 8px;"><strong>🌑 Теневая сторона:</strong> <?= $interpretations['karmic']['in_shadow'] ?></div>
+                </div>
+                <?php endif; ?>
+                
+                <!-- Профессии -->
+                <?php if(!empty($interpretations['karmic']['life']['profession']['text'])): ?>
+                <div style="margin-top: 15px;">
+                    <strong>💼 Профессии:</strong> <?= $interpretations['karmic']['life']['profession']['text'] ?>
+                </div>
+                <?php endif; ?>
+                
+                <!-- Знаменитости -->
+                <?php if(!empty($interpretations['karmic']['celebrities'])): ?>
+                <div style="margin-top: 15px;">
+                    <strong>⭐ Знаменитости:</strong> <?= $interpretations['karmic']['celebrities'] ?>
+                </div>
+                <?php endif; ?>
+                
+                <!-- Миссия -->
+                <?php if(!empty($interpretations['karmic']['mission'])): ?>
+                <div style="margin-top: 15px; background: #f0e4d6; padding: 12px; border-radius: 15px;">
+                    <strong>🎯 Миссия:</strong> <?= $interpretations['karmic']['mission'] ?>
+                </div>
+                <?php endif; ?>
+                
+                <!-- Ключевые слова -->
+                <?php if(!empty($interpretations['karmic']['keywords'])): ?>
+                <div style="margin-top: 15px;">
+                    <strong>🔑 Ключевые слова:</strong> <?= $interpretations['karmic']['keywords'] ?>
+                </div>
+                <?php endif; ?>
+                
+                <!-- Аффирмации -->
+                <?php if(!empty($interpretations['karmic']['affirmations'])): ?>
+                <div style="margin-top: 15px;">
+                    <strong>📿 Аффирмации:</strong>
+                    <ul style="margin-top: 5px; margin-left: 20px;">
+                        <?php foreach($interpretations['karmic']['affirmations'] as $affirmation): ?>
+                        <li><?= $affirmation ?></li>
+                        <?php endforeach; ?>
+                    </ul>
                 </div>
                 <?php endif; ?>
             </div>
@@ -391,7 +587,7 @@ $hiddenPotential = $result['hidden_potential'] ?? [];
         <div class="actions-ps">Полный нумерологический расчет по полному ФИО вы можете заказать:</div>
         <?php include_once 'app/include/socseti.php'; ?>
         <div class="summa0">
-            <div class="summa">Стоимость услуги <?php echo $imya['price'];?> рублей</div>
+            <div class="summa">Стоимость услуги <?php echo $imya['price'] ?? '199';?> рублей</div>
         </div>
         
         <!-- Кнопки действий -->
