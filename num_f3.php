@@ -1,4 +1,4 @@
-    // 3. Массив расшифровок суммарного числа (оставляем как есть)
+   // 3. Массив расшифровок суммарного числа (оставляем как есть)
     $totalMeanings = [
         1 => ['title' => 'Лидер', 'short' => 'Ваш главный ресурс — лидерство и самостоятельность.', 'full' => 'Вы пришли в этот мир, чтобы проявлять волю и вести за собой...', 'advice' => 'Создавайте собственные проекты...'],
         2 => ['title' => 'Дипломат', 'short' => 'Ваш дар — создавать гармонию и партнёрство.', 'full' => 'Вы пришли в этот мир, чтобы учить людей сотрудничеству и любви...', 'advice' => 'Развивайте дипломатические таланты...'],
@@ -317,97 +317,83 @@ $_SESSION['name_result'] = [
         'personality' => $personalityNumber,
         'karmic' => $karmicNumber
     ],
+    
+    // ==================== ОСНОВНЫЕ РАСШИФРОВКИ ====================
     'interpretations' => [
-    'name' => [
-        'title' => $nameInterpretation['title'] ?? 'Лидер',
-        'essence' => $nameInterpretation['essence'] ?? $nameInterpretation['name']['essence'] ?? 'Описание характера',
-        'strengths' => $nameInterpretation['strengths'] ?? $nameInterpretation['name']['strengths'] ?? 'Сильные стороны',
-        'weaknesses' => $nameInterpretation['weaknesses'] ?? $nameInterpretation['name']['weaknesses'] ?? 'Слабые стороны',
-        'in_shadow' => $nameInterpretation['in_shadow'] ?? $nameInterpretation['name']['in_shadow'] ?? 'Теневая сторона',
-        'mythology' => $nameInterpretation['mythology'] ?? '',
-        'archetype' => $nameInterpretation['archetype'] ?? '',
-        'sacred' => $nameInterpretation['sacred'] ?? '',
-        'life' => $nameInterpretation['life'] ?? [],
-        'intensity' => $nameInterpretation['intensity'] ?? [],
-        'ages' => $nameInterpretation['ages'] ?? [],
-        'celebrities' => $nameInterpretation['celebrities'] ?? '',
-        'compatibility_matrix' => $nameInterpretation['compatibility_matrix'] ?? [],
-        'recommendations' => $nameInterpretation['recommendations'] ?? [],
-        'mission' => $nameInterpretation['mission'] ?? '',
-        'keywords' => $nameInterpretation['keywords'] ?? '',
-        'affirmations' => $nameInterpretation['affirmations'] ?? []
+        'name' => [
+            'title' => $nameInterpretation['title'] ?? 'Лидер',
+            'essence' => $nameInterpretation['essence'] ?? $nameInterpretation['name']['essence'] ?? 'Описание характера',
+            'strengths' => $nameInterpretation['strengths'] ?? $nameInterpretation['name']['strengths'] ?? 'Сильные стороны',
+            'weaknesses' => $nameInterpretation['weaknesses'] ?? $nameInterpretation['name']['weaknesses'] ?? 'Слабые стороны',
+            'in_shadow' => $nameInterpretation['in_shadow'] ?? $nameInterpretation['name']['in_shadow'] ?? 'Теневая сторона',
+            'mythology' => $nameInterpretation['mythology'] ?? '',
+            'archetype' => $nameInterpretation['archetype'] ?? '',
+            'sacred' => $nameInterpretation['sacred'] ?? '',
+            'life' => $nameInterpretation['life'] ?? [],
+            'intensity' => $nameInterpretation['intensity'] ?? [],
+            'ages' => $nameInterpretation['ages'] ?? [],
+            'celebrities' => $nameInterpretation['celebrities'] ?? '',
+            'compatibility_matrix' => $nameInterpretation['compatibility_matrix'] ?? [],
+            'recommendations' => $nameInterpretation['recommendations'] ?? [],
+            'mission' => $nameInterpretation['mission'] ?? '',
+            'keywords' => $nameInterpretation['keywords'] ?? '',
+            'affirmations' => $nameInterpretation['affirmations'] ?? []
+        ],
+        'soul' => [
+            'title' => $soulInterpretation['title'] ?? 'Загадочная душа',
+            'essence' => $soulInterpretation['essence'] ?? $soulInterpretation['soul']['essence'] ?? 'Описание души',
+            'desires' => $soulInterpretation['desires'] ?? $soulInterpretation['soul']['desires'] ?? 'Желания',
+            'fears' => $soulInterpretation['fears'] ?? $soulInterpretation['soul']['fears'] ?? 'Страхи',
+            'mythology' => $soulInterpretation['mythology'] ?? '',
+            'archetype' => $soulInterpretation['archetype'] ?? '',
+            'sacred' => $soulInterpretation['sacred'] ?? '',
+            'strengths' => $soulInterpretation['strengths'] ?? '',
+            'weaknesses' => $soulInterpretation['weaknesses'] ?? '',
+            'in_shadow' => $soulInterpretation['in_shadow'] ?? '',
+            'life' => $soulInterpretation['life'] ?? [],
+            'celebrities' => $soulInterpretation['celebrities'] ?? '',
+            'mission' => $soulInterpretation['mission'] ?? '',
+            'keywords' => $soulInterpretation['keywords'] ?? '',
+            'affirmations' => $soulInterpretation['affirmations'] ?? []
+        ],
+        'personality' => [
+            'title' => $personalityInterpretation['title'] ?? 'Индивидуальность',
+            'essence' => $personalityInterpretation['essence'] ?? $personalityInterpretation['personality']['essence'] ?? 'Описание личности',
+            'image' => $personalityInterpretation['image'] ?? $personalityInterpretation['personality']['image'] ?? 'Образ',
+            'first_impression' => $personalityInterpretation['first_impression'] ?? $personalityInterpretation['personality']['first_impression'] ?? 'Первое впечатление',
+            'mythology' => $personalityInterpretation['mythology'] ?? '',
+            'archetype' => $personalityInterpretation['archetype'] ?? '',
+            'strengths' => $personalityInterpretation['strengths'] ?? '',
+            'weaknesses' => $personalityInterpretation['weaknesses'] ?? '',
+            'in_shadow' => $personalityInterpretation['in_shadow'] ?? '',
+            'life' => $personalityInterpretation['life'] ?? [],
+            'celebrities' => $personalityInterpretation['celebrities'] ?? '',
+            'mission' => $personalityInterpretation['mission'] ?? '',
+            'keywords' => $personalityInterpretation['keywords'] ?? '',
+            'affirmations' => $personalityInterpretation['affirmations'] ?? []
+        ],
+        'karmic' => [
+            'title' => $karmicInterpretation['title'] ?? 'Кармическая задача',
+            'essence' => $karmicInterpretation['essence'] ?? $karmicInterpretation['name']['essence'] ?? '',
+            'tasks' => $karmicInterpretation['karmic']['tasks'] ?? $karmicInterpretation['karmic_tasks'] ?? ['Познание себя'],
+            'lesson' => $karmicInterpretation['karmic']['lesson'] ?? $karmicInterpretation['karmic_lesson'] ?? 'Главный урок',
+            'mythology' => $karmicInterpretation['mythology'] ?? '',
+            'archetype' => $karmicInterpretation['archetype'] ?? '',
+            'strengths' => $karmicInterpretation['strengths'] ?? '',
+            'weaknesses' => $karmicInterpretation['weaknesses'] ?? '',
+            'in_shadow' => $karmicInterpretation['in_shadow'] ?? '',
+            'life' => $karmicInterpretation['life'] ?? [],
+            'celebrities' => $karmicInterpretation['celebrities'] ?? '',
+            'mission' => $karmicInterpretation['mission'] ?? '',
+            'keywords' => $karmicInterpretation['keywords'] ?? '',
+            'affirmations' => $karmicInterpretation['affirmations'] ?? []
+        ]
     ],
-    'soul' => [
-        'title' => $soulInterpretation['title'] ?? 'Загадочная душа',
-        'essence' => $soulInterpretation['essence'] ?? $soulInterpretation['soul']['essence'] ?? 'Описание души',
-        'desires' => $soulInterpretation['desires'] ?? $soulInterpretation['soul']['desires'] ?? 'Желания',
-        'fears' => $soulInterpretation['fears'] ?? $soulInterpretation['soul']['fears'] ?? 'Страхи',
-        'mythology' => $soulInterpretation['mythology'] ?? '',
-        'archetype' => $soulInterpretation['archetype'] ?? '',
-        'sacred' => $soulInterpretation['sacred'] ?? '',
-        // ДОБАВЛЯЕМ НЕДОСТАЮЩИЕ ПОЛЯ ДЛЯ ДУШИ
-        'strengths' => $soulInterpretation['strengths'] ?? '',
-        'weaknesses' => $soulInterpretation['weaknesses'] ?? '',
-        'in_shadow' => $soulInterpretation['in_shadow'] ?? '',
-        'life' => $soulInterpretation['life'] ?? [],
-        'celebrities' => $soulInterpretation['celebrities'] ?? '',
-        'mission' => $soulInterpretation['mission'] ?? '',
-        'keywords' => $soulInterpretation['keywords'] ?? '',
-        'affirmations' => $soulInterpretation['affirmations'] ?? []
-    ],
-    'personality' => [
-        'title' => $personalityInterpretation['title'] ?? 'Индивидуальность',
-        'essence' => $personalityInterpretation['essence'] ?? $personalityInterpretation['personality']['essence'] ?? 'Описание личности',
-        'image' => $personalityInterpretation['image'] ?? $personalityInterpretation['personality']['image'] ?? 'Образ',
-        'first_impression' => $personalityInterpretation['first_impression'] ?? $personalityInterpretation['personality']['first_impression'] ?? 'Первое впечатление',
-        'mythology' => $personalityInterpretation['mythology'] ?? '',
-        'archetype' => $personalityInterpretation['archetype'] ?? '',
-        // ДОБАВЛЯЕМ НЕДОСТАЮЩИЕ ПОЛЯ ДЛЯ ЛИЧНОСТИ
-        'strengths' => $personalityInterpretation['strengths'] ?? '',
-        'weaknesses' => $personalityInterpretation['weaknesses'] ?? '',
-        'in_shadow' => $personalityInterpretation['in_shadow'] ?? '',
-        'life' => $personalityInterpretation['life'] ?? [],
-        'celebrities' => $personalityInterpretation['celebrities'] ?? '',
-        'mission' => $personalityInterpretation['mission'] ?? '',
-        'keywords' => $personalityInterpretation['keywords'] ?? '',
-        'affirmations' => $personalityInterpretation['affirmations'] ?? []
-    ],
-    'karmic' => [
-        'title' => $karmicInterpretation['title'] ?? 'Кармическая задача',
-        'tasks' => $karmicInterpretation['karmic']['tasks'] ?? $karmicInterpretation['karmic_tasks'] ?? ['Познание себя'],
-        'lesson' => $karmicInterpretation['karmic']['lesson'] ?? $karmicInterpretation['karmic_lesson'] ?? 'Главный урок',
-        'mythology' => $karmicInterpretation['mythology'] ?? '',
-        'archetype' => $karmicInterpretation['archetype'] ?? '',
-        // ДОБАВЛЯЕМ НЕДОСТАЮЩИЕ ПОЛЯ ДЛЯ КАРМИЧЕСКОГО
-        'essence' => $karmicInterpretation['essence'] ?? $karmicInterpretation['name']['essence'] ?? '',
-        'strengths' => $karmicInterpretation['strengths'] ?? '',
-        'weaknesses' => $karmicInterpretation['weaknesses'] ?? '',
-        'in_shadow' => $karmicInterpretation['in_shadow'] ?? '',
-        'life' => $karmicInterpretation['life'] ?? [],
-        'celebrities' => $karmicInterpretation['celebrities'] ?? '',
-        'mission' => $karmicInterpretation['mission'] ?? '',
-        'keywords' => $karmicInterpretation['keywords'] ?? '',
-        'affirmations' => $karmicInterpretation['affirmations'] ?? []
-    ],
-    'personality' => [
-        'title' => $personalityInterpretation['title'] ?? 'Индивидуальность',
-        'essence' => $personalityInterpretation['essence'] ?? $personalityInterpretation['personality']['essence'] ?? 'Описание личности',
-        'image' => $personalityInterpretation['image'] ?? $personalityInterpretation['personality']['image'] ?? 'Образ',
-        'first_impression' => $personalityInterpretation['first_impression'] ?? $personalityInterpretation['personality']['first_impression'] ?? 'Первое впечатление',
-        // ДОБАВЛЯЕМ ПОЛЯ ДЛЯ ЛИЧНОСТИ
-        'mythology' => $personalityInterpretation['mythology'] ?? '',
-        'archetype' => $personalityInterpretation['archetype'] ?? ''
-    ],
-    'karmic' => [
-        'title' => $karmicInterpretation['title'] ?? 'Кармическая задача',
-        'tasks' => $karmicInterpretation['karmic']['tasks'] ?? $karmicInterpretation['karmic_tasks'] ?? ['Познание себя'],
-        'lesson' => $karmicInterpretation['karmic']['lesson'] ?? $karmicInterpretation['karmic_lesson'] ?? 'Главный урок',
-        // ДОБАВЛЯЕМ ПОЛЯ ДЛЯ КАРМИЧЕСКОГО
-        'mythology' => $karmicInterpretation['mythology'] ?? '',
-        'archetype' => $karmicInterpretation['archetype'] ?? ''
-    ]
-],
+    
+    // ==================== ДОПОЛНИТЕЛЬНЫЙ АНАЛИЗ ====================
     'additional' => $additional,
+    
+    // ==================== СУММАРНОЕ ЧИСЛО ====================
     'total' => [
         'value' => $totalNumber,
         'title' => $totalData['title'],
@@ -416,8 +402,7 @@ $_SESSION['name_result'] = [
         'advice' => $totalData['advice']
     ],
     
-    // ========== НОВЫЕ РАСШИРЕННЫЕ ПАРАМЕТРЫ ==========
-    
+    // ==================== СПЕКТР ИМЕНИ ====================
     'spectrum' => [
         'all_numbers' => $allNameNumbers,
         'counts' => $spectrum,
@@ -428,29 +413,35 @@ $_SESSION['name_result'] = [
         'balance' => $balanceText
     ],
     
+    // ==================== ЧИСЛО ПОДСОЗНАНИЯ ====================
     'subconscious' => [
         'number' => $subconsciousNumber,
         'meaning' => $subconsciousMeanings[$subconsciousNumber] ?? 'Ваше подсознание уникально. Доверяйте своей интуиции.'
     ],
     
+    // ==================== ДИНАМИКА ИМЕНИ ====================
     'dynamics' => [
         'sequence' => $allNameNumbers,
         'transitions' => $transitions,
         'analysis' => $dynamicAnalysis
     ],
     
+    // ==================== КОРРЕКЦИЯ ИМЕНИ ====================
     'corrections' => $corrections,
     
+    // ==================== ЧИСЛО СУДЬБЫ ====================
     'destiny' => [
         'number' => $destinyNumber,
         'meaning' => $destinyMeanings[$destinyNumber] ?? 'Познание себя и мира'
     ],
     
+    // ==================== СКРЫТЫЙ ПОТЕНЦИАЛ ====================
     'hidden_potential' => [
         'number' => $hiddenPotential,
         'meaning' => $potentialMeanings[$hiddenPotential] ?? 'Раскройте свою уникальность'
     ],
     
+    // ==================== ВРЕМЯ РАСЧЕТА ====================
     'calculated_at' => date('d.m.Y H:i:s')
 ];
     
