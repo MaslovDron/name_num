@@ -120,20 +120,6 @@ $imya = selectOne('calc', ['id'=>10]);
             </div>
         </div>
         <?php endif; ?>
-        
-        <!-- ==================== ДОПОЛНИТЕЛЬНЫЕ СОВПАДЕНИЯ ==================== -->
-        <?php if(isset($result['additional_combinations']) && !empty($result['additional_combinations'])): ?>
-        <div class="additional-analysis">
-            <h2 class="section-title"><i class="fas fa-handshake"></i> Совпадения чисел</h2>
-            <?php foreach($result['additional_combinations'] as $comb): ?>
-            <div class="quality-card">
-                <div class="quality-title"><?= $comb['type'] ?></div>
-                <div class="quality-text"><?= $comb['text'] ?></div>
-            </div>
-            <?php endforeach; ?>
-        </div>
-        <?php endif; ?>
-
         <!-- ==================== ДОПОЛНИТЕЛЬНЫЕ СОВПАДЕНИЯ ==================== -->
         <?php if(isset($result['additional_combinations']) && !empty($result['additional_combinations'])): ?>
         <div class="additional-analysis">
