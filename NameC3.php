@@ -1,4 +1,4 @@
-$interpretations['combinations'] = [
+interpretations['combinations'] = [
     '1_1' => [
         'title' => 'Усиленная Единица — Абсолютный Лидер',
         'description' => 'Когда число имени и души совпадают (оба 1), лидерские качества удваиваются. Человек — "лидер до мозга костей".'
@@ -136,7 +136,8 @@ $destinyMeanings = [
  */
 function saveNumerologyFioReport($result_data, $email = '') {
     // Создаем папку для отчетов, если её нет
-    $report_dir = $_SERVER['DOCUMENT_ROOT'] . '/reports/';
+    // $report_dir = $_SERVER['DOCUMENT_ROOT'] . '/reports/';
+    $report_dir ='../reports/';
     if (!file_exists($report_dir)) {
         mkdir($report_dir, 0777, true);
     }
