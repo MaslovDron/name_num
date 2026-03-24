@@ -1,4 +1,4 @@
- //tt($_POST);
+//tt($_POST);
     $firstName = htmlspecialchars(trim($_POST['FirstName'] ?? ''), ENT_QUOTES, 'UTF-8');
     $lastName = htmlspecialchars(trim($_POST['LastName'] ?? ''), ENT_QUOTES, 'UTF-8');
     $Famely = htmlspecialchars(trim($_POST['Famely'] ?? ''), ENT_QUOTES, 'UTF-8');
@@ -40,13 +40,16 @@
             $_SESSION['fio_result']['combination'] = $interpretations['combinations'][$combinationKey];
         }
     }
-    /////////////создаем файл для пользователя
-    // Сохраняем ссылку на файл в сессии
+/////////////создаем файл для пользователя
+// Вызываем функцию сохранения отчета
+$save_result = saveNumerologyFioReport($_SESSION['fio_result'], $_POST['email'] ?? '');
+
+// Сохраняем ссылку на файл в сессии
 if ($save_result['success']) {
     $_SESSION['fio_report_url'] = $save_result['full_url'];
     $_SESSION['fio_report_filename'] = $save_result['filename'];
 }
-    /////////////создаем файл для пользователя
+/////////////создаем файл для пользователя
     
     if ($nameNumber == $personalityNumber && $nameNumber != $soulNumber) {
         $combinations[] = [
