@@ -140,7 +140,8 @@ if($_SERVER['REQUEST_METHOD']=='POST' && isset ($_POST['SovmFr']))
     if(empty($errMsg))//если передали все данные
         {
             include 'app/include/matr-fio.php';
-                
+         //передаем расшифровку  
+            //include 'app/include/sovmest-function.php';     
     // 3. Расчёт чисел для обоих имён
     $numbers1 = calculateNameNumbers($name_1, $letterValues, $vowels, $consonants);
     $numbers2 = calculateNameNumbers($name_2, $letterValues, $vowels, $consonants);
@@ -157,7 +158,10 @@ if($_SERVER['REQUEST_METHOD']=='POST' && isset ($_POST['SovmFr']))
         'compatibility' => $compatibility,
         'calculated_at' => date('d.m.Y H:i:s')
     ];
-    tt($_SESSION);
+    //tt($_SESSION);
+    header('Location: ' . ABS_PATH . 'sovmest-result.php');
+    exit;
+
         }
 
 }
