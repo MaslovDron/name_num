@@ -41,7 +41,7 @@ $interpretation = getFullCompatibilityInterpretation($compatibility, $numbers1, 
             </div>
             
             <!-- Информация об именах -->
-            <div class="date-info">
+            <!-- <div class="date-info">
                 <div class="date-item">
                     <div class="date-value"><?= htmlspecialchars($result['name1']) ?></div>
                     <div class="date-label">Партнёр 1</div>
@@ -50,17 +50,37 @@ $interpretation = getFullCompatibilityInterpretation($compatibility, $numbers1, 
                     <div class="date-value"><?= htmlspecialchars($result['name2']) ?></div>
                     <div class="date-label">Партнёр 2</div>
                 </div>
-                <!-- <div class="date-item">
+                <div class="date-item">
                     <div class="date-value"><?= $interpretation['percentage'] ?>%</div>
                     <div class="date-label">Совместимость</div>
-                </div> -->
-                <!-- <div class="date-item">
+                </div>
+                <div class="date-item">
                     <div class="date-value"><?= $result['calculated_at'] ?></div>
                     <div class="date-label">Дата расчёта</div>
-                </div> -->
+                </div>
+            </div> -->
+            <div class="date-info" style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+                <div class="date-item" style="flex: 0 0 auto;">
+                    <div class="date-value"><?= htmlspecialchars($result['name1']) ?></div>
+                    <div class="date-label">Партнёр 1</div>
+                </div>
+                <div style="font-size: 48px; font-weight: bold; color: #b38b5f; margin: 0 10px;">+</div>
+                <div class="date-item" style="flex: 0 0 auto;">
+                    <div class="date-value"><?= htmlspecialchars($result['name2']) ?></div>
+                    <div class="date-label">Партнёр 2</div>
+                </div>
             </div>
             
-            
+              <!-- Процент совместимости -->
+            <div class="compatibility-score">
+                <div class="score-circle">
+                    <div class="score-value"><?= $interpretation['percentage'] ?>%</div>
+                    <div class="score-label">совместимости</div>
+                </div>
+                <!-- <div class="level-badge" style="background: <?= $interpretation['percentage'] >= 70 ? '#27ae60' : ($interpretation['percentage'] >= 50 ? '#f39c12' : '#e74c3c') ?>; color: white;">
+                    <?= $interpretation['level_icon'] ?> <?= $interpretation['level'] ?>
+                </div> -->
+            </div>   
             
 
             
@@ -241,16 +261,7 @@ $interpretation = getFullCompatibilityInterpretation($compatibility, $numbers1, 
                 <div class="quality-title">📖 Подробный разбор</div>
                 <div class="quality-text"><?= $interpretation['full_description'] ?></div>
             </div>
-            <!-- Процент совместимости -->
-            <div class="compatibility-score">
-                <div class="score-circle">
-                    <div class="score-value"><?= $interpretation['percentage'] ?>%</div>
-                    <div class="score-label">совместимости</div>
-                </div>
-                <div class="level-badge" style="background: <?= $interpretation['percentage'] >= 70 ? '#27ae60' : ($interpretation['percentage'] >= 50 ? '#f39c12' : '#e74c3c') ?>; color: white;">
-                    <?= $interpretation['level_icon'] ?> <?= $interpretation['level'] ?>
-                </div>
-            </div>
+       
             
             <!-- Призыв к полному анализу -->
             <div class="actions-ps">Хотите более глубокий анализ по ФИО и дате рождения?</div>
@@ -264,9 +275,6 @@ $interpretation = getFullCompatibilityInterpretation($compatibility, $numbers1, 
                 <a href="sovmest-form.php" class="btn btn-primary">
                     <i class="fas fa-redo"></i> Новый расчёт
                 </a>
-                <button onclick="window.print()" class="btn btn-secondary">
-                    <i class="fas fa-print"></i> Распечатать
-                </button>
             </div>
             
             <!-- Футер -->
