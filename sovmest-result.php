@@ -30,172 +30,6 @@ $interpretation = getFullCompatibilityInterpretation($compatibility, $numbers1, 
     <link rel="stylesheet" href="<?=ABS_PATH?>assets/css/all-style.css">
     <link rel="stylesheet" href="<?=ABS_PATH?>assets/css/sovmest.css">
     
-    <!-- <style>
-        /* Дополнительные стили для совместимости */
-        .compatibility-score {
-            text-align: center;
-            margin: 30px 0;
-        }
-        .score-circle {
-            width: 180px;
-            height: 180px;
-            margin: 0 auto;
-            background: linear-gradient(135deg, #b38b5f, #8a6e4b);
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            box-shadow: 0 15px 35px rgba(179, 139, 95, 0.3);
-        }
-        .score-value {
-            font-size: 56px;
-            font-weight: bold;
-        }
-        .score-label {
-            font-size: 18px;
-            opacity: 0.9;
-        }
-        .level-badge {
-            display: inline-block;
-            padding: 8px 25px;
-            border-radius: 60px;
-            font-size: 20px;
-            font-weight: bold;
-            margin: 15px 0;
-        }
-        .pair-numbers {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            gap: 30px;
-            align-items: center;
-            margin: 30px 0;
-        }
-        .number-block {
-            background: white;
-            border-radius: 30px;
-            padding: 25px;
-            text-align: center;
-            border: 1px solid #f0e4d6;
-        }
-        .number-block h3 {
-            color: #b38b5f;
-            margin-bottom: 15px;
-        }
-        .number-list {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        .number-item {
-            text-align: center;
-        }
-        .number-item .num {
-            font-size: 32px;
-            font-weight: bold;
-            color: #b38b5f;
-        }
-        .number-item .label {
-            font-size: 12px;
-            color: #8b7a6b;
-        }
-        .heart-icon {
-            font-size: 48px;
-            color: #b38b5f;
-        }
-        .advice-block {
-            background: #f9f5f0;
-            border-radius: 30px;
-            padding: 25px;
-            margin: 20px 0;
-            border-left: 5px solid #b38b5f;
-        }
-        .strengthening-list {
-            list-style: none;
-            padding: 0;
-        }
-        .strengthening-list li {
-            padding: 12px 0;
-            border-bottom: 1px solid #f0e4d6;
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-        }
-        .strengthening-list li:last-child {
-            border-bottom: none;
-        }
-        .criteria-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin: 30px 0;
-        }
-        .criteria-card {
-            background: white;
-            border-radius: 20px;
-            padding: 20px;
-            border: 1px solid #f0e4d6;
-        }
-        .criteria-title {
-            font-weight: bold;
-            color: #b38b5f;
-            margin-bottom: 10px;
-            font-size: 18px;
-        }
-        .criteria-numbers {
-            display: flex;
-            justify-content: space-between;
-            margin: 15px 0;
-            padding: 10px;
-            background: #fefaf4;
-            border-radius: 15px;
-        }
-        .criteria-numbers span {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .criteria-desc {
-            font-size: 14px;
-            color: #6a5a4c;
-            line-height: 1.5;
-        }
-        .strength-weakness {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin: 15px 0;
-        }
-        .strength-box, .weakness-box {
-            padding: 12px;
-            border-radius: 15px;
-            font-size: 14px;
-        }
-        .strength-box {
-            background: #e8f5e9;
-            color: #2e7d32;
-        }
-        .weakness-box {
-            background: #ffebee;
-            color: #c62828;
-        }
-        @media (max-width: 768px) {
-            .pair-numbers {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            .heart-icon {
-                transform: rotate(90deg);
-            }
-            .criteria-grid {
-                grid-template-columns: 1fr;
-            }
-            .strength-weakness {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style> -->
 </head>
 <body>
     <div class="landing">
@@ -216,38 +50,19 @@ $interpretation = getFullCompatibilityInterpretation($compatibility, $numbers1, 
                     <div class="date-value"><?= htmlspecialchars($result['name2']) ?></div>
                     <div class="date-label">Партнёр 2</div>
                 </div>
-                <div class="date-item">
+                <!-- <div class="date-item">
                     <div class="date-value"><?= $interpretation['percentage'] ?>%</div>
                     <div class="date-label">Совместимость</div>
-                </div>
-                <div class="date-item">
+                </div> -->
+                <!-- <div class="date-item">
                     <div class="date-value"><?= $result['calculated_at'] ?></div>
                     <div class="date-label">Дата расчёта</div>
-                </div>
+                </div> -->
             </div>
             
-            <!-- Процент совместимости -->
-            <div class="compatibility-score">
-                <div class="score-circle">
-                    <div class="score-value"><?= $interpretation['percentage'] ?>%</div>
-                    <div class="score-label">совместимости</div>
-                </div>
-                <div class="level-badge" style="background: <?= $interpretation['percentage'] >= 70 ? '#27ae60' : ($interpretation['percentage'] >= 50 ? '#f39c12' : '#e74c3c') ?>; color: white;">
-                    <?= $interpretation['level_icon'] ?> <?= $interpretation['level'] ?>
-                </div>
-            </div>
             
-            <!-- Краткое описание уровня -->
-            <div class="quality-card">
-                <div class="quality-title">✨ Общая оценка</div>
-                <div class="quality-text"><?= $interpretation['short_description'] ?></div>
-            </div>
             
-            <!-- Полное описание -->
-            <div class="quality-card">
-                <div class="quality-title">📖 Подробный разбор</div>
-                <div class="quality-text"><?= $interpretation['full_description'] ?></div>
-            </div>
+
             
             <!-- Ключевые числа пары -->
             <h2 class="matrix-title"><i class="fas fa-magic"></i> Ключевые числа</h2>
@@ -414,6 +229,27 @@ $interpretation = getFullCompatibilityInterpretation($compatibility, $numbers1, 
             <div class="quality-card">
                 <div class="quality-title">💫 Общая рекомендация</div>
                 <div class="quality-text"><?= $interpretation['general_advice'] ?></div>
+            </div>
+                        <!-- Краткое описание уровня -->
+            <div class="quality-card">
+                <div class="quality-title">✨ Общая оценка</div>
+                <div class="quality-text"><?= $interpretation['short_description'] ?></div>
+            </div>
+            
+            <!-- Полное описание -->
+            <div class="quality-card">
+                <div class="quality-title">📖 Подробный разбор</div>
+                <div class="quality-text"><?= $interpretation['full_description'] ?></div>
+            </div>
+            <!-- Процент совместимости -->
+            <div class="compatibility-score">
+                <div class="score-circle">
+                    <div class="score-value"><?= $interpretation['percentage'] ?>%</div>
+                    <div class="score-label">совместимости</div>
+                </div>
+                <div class="level-badge" style="background: <?= $interpretation['percentage'] >= 70 ? '#27ae60' : ($interpretation['percentage'] >= 50 ? '#f39c12' : '#e74c3c') ?>; color: white;">
+                    <?= $interpretation['level_icon'] ?> <?= $interpretation['level'] ?>
+                </div>
             </div>
             
             <!-- Призыв к полному анализу -->
