@@ -265,6 +265,65 @@ if($_SERVER['REQUEST_METHOD']=='POST' && isset ($_POST['SovmFr']))
     exit;
 
         }
-
 }
+        //на фронте
+        //на бэке
+        if($_SERVER['REQUEST_METHOD']=='POST' && isset ($_POST['submitSovmBack']))
+{
+        //tt($_POST);
+        $imya1=htmlspecialchars(trim($_POST['imya1'] ?? ''), ENT_QUOTES, 'UTF-8');
+        $otchestvo1=htmlspecialchars(trim($_POST['otchestvo1'] ?? ''), ENT_QUOTES, 'UTF-8');
+        $familia1=htmlspecialchars(trim($_POST['familia1'] ?? ''), ENT_QUOTES, 'UTF-8');
+        $imya2=htmlspecialchars(trim($_POST['imya2'] ?? ''), ENT_QUOTES, 'UTF-8');
+        $otchestvo2=htmlspecialchars(trim($_POST['otchestvo2'] ?? ''), ENT_QUOTES, 'UTF-8');
+        $familia2=htmlspecialchars(trim($_POST['familia2'] ?? ''), ENT_QUOTES, 'UTF-8');
+        //для имени 
+        if(empty($imya1) or empty($imya2)) 
+        {
+            $errMsg .= 'Пожалуйста, введит поля имя<br>';
+        }
+
+    if((!preg_match('/^[а-яёА-ЯЁ]+$/u', $imya1)) or (!preg_match('/^[а-яёА-ЯЁ]+$/u', $ymya2))) 
+        {
+             $errMsg .= 'Имя может содержать только русские буквы<br>';
+        }
+    if ((mb_strlen($imya1) < 2) or (mb_strlen($imya2) < 2)) 
+        {
+            $errMsg .= 'Имя должно содержать минимум 2 буквы<br>';
+        }
+        //для отчества
+          if(empty($otchestvo1) or empty($otchestvo2)) 
+        {
+            $errMsg .= 'Пожалуйста, введит поля отчества<br>';
+        }
+
+        if((!preg_match('/^[а-яёА-ЯЁ]+$/u', $otchestvo1)) or (!preg_match('/^[а-яёА-ЯЁ]+$/u', $otchestvo2))) 
+            {
+                $errMsg .= 'Отчество может содержать только русские буквы<br>';
+            }
+        if ((mb_strlen($otchestvo1) < 2) or (mb_strlen($otchestvo2) < 2)) 
+        {
+            $errMsg .= 'Отчество должны содержать минимум 2 буквы<br>';
+        }
+        //для фамилии
+              if(empty($familia1) or empty($familia2)) 
+        {
+            $errMsg .= 'Пожалуйста, введит поля фамилии<br>';
+        }
+
+        if((!preg_match('/^[а-яёА-ЯЁ]+$/u', $familia1)) or (!preg_match('/^[а-яёА-ЯЁ]+$/u', $familia2))) 
+            {
+                $errMsg .= 'Фамилие может содержать только русские буквы<br>';
+            }
+        if ((mb_strlen($familia1) < 2) or (mb_strlen($familia2) < 2)) 
+        {
+            $errMsg .= 'Фамилии должны содержать минимум 2 буквы<br>';
+        }
+        /////////////////////////////////////////////////////////////////
+    if(empty($errMsg))//если передали все данные
+    {
+        
+    }
+}
+    //на бэке
 ?>
