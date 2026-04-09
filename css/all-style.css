@@ -1,0 +1,153 @@
+/* футер */
+.site-footer {
+    background: linear-gradient(145deg, #2c3e50, #1e2b38);
+    color: #e5dbd1;
+    padding: 40px 0 20px;
+    margin-top: 60px;
+    font-family: 'Georgia', serif;
+    border-top: 4px solid #b38b5f;
+}
+
+.site-footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.footer-logo {
+    font-size: 22px;
+    font-weight: 600;
+    color: #b38b5f;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-description {
+    font-size: 14px;
+    opacity: 0.8;
+    margin-bottom: 15px;
+}
+
+.footer-copyright {
+    font-size: 13px;
+    opacity: 0.6;
+}
+
+.footer-links-col {
+    text-align: right;
+    padding: 0 20px 0 20px;
+}
+
+.footer-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+.footer-nav li {
+    margin-bottom: 12px;
+}
+
+.footer-nav a {
+    color: #e5dbd1;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.2s;
+    font-size: 15px;
+}
+
+.footer-nav a:hover {
+    color: #b38b5f;
+    transform: translateX(-3px); /* Для правой колонки сдвиг влево */
+}
+
+.footer-nav a i {
+    color: #b38b5f;
+    width: 20px;
+}
+
+.footer-social {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+}
+
+.footer-social a {
+    color: #b38b5f;
+    font-size: 22px;
+    opacity: 0.8;
+    transition: 0.2s;
+}
+
+.footer-social a:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.footer-mobile {
+    display: none;
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-size: 14px;
+}
+
+.footer-mobile a {
+    color: #b38b5f;
+    text-decoration: none;
+}
+
+.footer-mobile span {
+    color: rgba(255,255,255,0.2);
+}
+
+/* Адаптация */
+@media (max-width: 700px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .footer-links-col {
+        text-align: left;
+    }
+    
+    .footer-nav a:hover {
+        transform: translateX(3px); /* На мобильных сдвиг вправо */
+    }
+    
+    .footer-social {
+        justify-content: flex-start;
+    }
+    
+    .footer-mobile {
+        display: flex;
+    }
+}
+
+@media (max-width: 400px) {
+    .footer-mobile {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .footer-mobile span {
+        display: none;
+    }
+}
+
+/* футер */
