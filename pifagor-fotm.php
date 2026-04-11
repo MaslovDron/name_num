@@ -7,16 +7,49 @@ include 'app/controllers/PifagorController.php';
  <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
-    <title>Квадрат Пифагора — цифровой код вашей судьбы</title>
+
+    <!-- 1. ОСНОВНЫЕ МЕТА-ТЕГИ ДЛЯ ПОИСКА -->
+    <title>Квадрат Пифагора: расчет по дате рождения онлайн | Расшифровка психоматрицы</title>
+    <meta name="description" content="Бесплатный расчет Квадрата Пифагора (психоматрицы) по дате рождения. Детальная расшифровка 9 ячеек: характер, энергия, здоровье, удача, долг, память и совместимость. Узнайте свой код судьбы!">
+    <link rel="canonical" href="https://калькулятор-судьбы.рф/pifagor-form" />
+
+    <!-- 2. OPEN GRAPH ДЛЯ СОЦСЕТЕЙ (ВК, ТГ, ОК) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://калькулятор-судьбы.рф/pifagor-form">
+    <meta property="og:title" content="Квадрат Пифагора: расчет по дате рождения онлайн | Расшифровка психоматрицы">
+    <meta property="og:description" content="Бесплатный расчет психоматрицы по дате рождения. Узнайте свой характер, таланты, энергию, здоровье и совместимость. Полная расшифровка 9 ячеек.">
+    <meta property="og:image" content="https://калькулятор-судьбы.рф/img-calc/ss.jpg">
+    <meta property="og:site_name" content="Калькулятор Судьбы">
+
+    <!-- 3. СТРУКТУРИРОВАННЫЕ ДАННЫЕ ДЛЯ ПОИСКОВИКОВ (SCHEMA.ORG) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Квадрат Пифагора: расчет по дате рождения",
+      "description": "Бесплатный онлайн расчет психоматрицы по дате рождения. Расшифровка характера, энергии, здоровья, удачи, долга и памяти.",
+      "url": "https://калькулятор-судьбы.рф/pifagor-form",
+      "mainEntity": {
+        "@type": "SoftwareApplication",
+        "name": "Калькулятор Квадрата Пифагора",
+        "applicationCategory": "Lifestyle",
+        "operatingSystem": "All",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "RUB"
+        }
+      }
+    }
+    </script>
+
+    <!-- Ваши стили (оставляем как есть) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-   <!-- style-->
-   <link rel="stylesheet" href="<?=ABS_PATH?>assets/css/pifagor-form.css">
-   <link rel="stylesheet" href="<?=ABS_PATH?>assets/css/all-style.css">
-   <!-- style-->
+    <link rel="stylesheet" href="<?=ABS_PATH?>assets/css/pifagor-form.css">
+    <link rel="stylesheet" href="<?=ABS_PATH?>assets/css/all-style.css">
 </head>
 <body>
     <!-- шапка -->
