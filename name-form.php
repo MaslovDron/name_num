@@ -9,7 +9,39 @@ include 'app/controllers/NameController.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
-    <title>Нумерология имени — цифровой код вашей судьбы</title>
+    <title>Нумерология имени: расчет онлайн по буквам | Число имени, души, личности</title>
+    <meta name="description" content="Бесплатный расчет нумерологии имени онлайн. Узнайте число имени, души, личности и кармическое число. Полная расшифровка характера, талантов и предназначения по буквам вашего имени.">
+    <link rel="canonical" href="https://калькулятор-судьбы.рф/name-form" />
+
+    <!-- 2. OPEN GRAPH ДЛЯ СОЦСЕТЕЙ (ВК, ТГ, ОК) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://калькулятор-судьбы.рф/name-form">
+    <meta property="og:title" content="Нумерология имени: расчет онлайн по буквам | Число имени, души, личности">
+    <meta property="og:description" content="Бесплатный расчет нумерологии имени. Узнайте свой цифровой код: характер, таланты, предназначение и скрытые способности по буквам имени.">
+    <meta property="og:image" content="https://калькулятор-судьбы.рф/img-calc/name.jpg">
+    <meta property="og:site_name" content="Калькулятор Судьбы">
+
+    <!-- 3. СТРУКТУРИРОВАННЫЕ ДАННЫЕ ДЛЯ ПОИСКОВИКОВ (SCHEMA.ORG) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Нумерология имени: расчет онлайн",
+      "description": "Бесплатный онлайн расчет нумерологии имени. Расшифровка числа имени, души, личности и кармического числа.",
+      "url": "https://калькулятор-судьбы.рф/name-form",
+      "mainEntity": {
+        "@type": "SoftwareApplication",
+        "name": "Калькулятор нумерологии имени",
+        "applicationCategory": "Lifestyle",
+        "operatingSystem": "All",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "RUB"
+        }
+      }
+    }
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -53,7 +85,7 @@ include 'app/controllers/NameController.php';
                 </div>
             </div>
             <div class="hero-image">
-               <img src="<?php echo ABS_PATH;?>img-calc/name.jpg" alt="Нумерология имени" onerror="this.src='https://via.placeholder.com/500x400?text=Имя'">
+               <img src="<?php echo ABS_PATH;?>img-calc/name.jpg" alt="Нумерология имени">
             </div>
         </div>
 
