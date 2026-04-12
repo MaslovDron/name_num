@@ -9,7 +9,40 @@ include 'app/controllers/SovmestController.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
-    <title>Совместимость имён — узнайте, насколько вы подходите друг другу</title>
+     <!-- 1. ОСНОВНЫЕ МЕТА-ТЕГИ ДЛЯ ПОИСКА -->
+    <title>Совместимость имён: бесплатный расчёт онлайн | Нумерология отношений</title>
+    <meta name="description" content="Бесплатный расчёт совместимости имён онлайн. Узнайте процент совместимости и получите детальный разбор отношений: характер, эмоции, общие цели и динамика пары по нумерологии.">
+    <link rel="canonical" href="https://калькулятор-судьбы.рф/sovmest-form" />
+
+    <!-- 2. OPEN GRAPH ДЛЯ СОЦСЕТЕЙ (ВК, ТГ, ОК) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://калькулятор-судьбы.рф/sovmest-form">
+    <meta property="og:title" content="Совместимость имён: бесплатный расчёт онлайн | Нумерология отношений">
+    <meta property="og:description" content="Проверьте совместимость имён по нумерологии. Бесплатный онлайн расчёт процента совместимости и детальный разбор отношений пары.">
+    <meta property="og:image" content="https://калькулятор-судьбы.рф/img-calc/sovm-fio.jpg">
+    <meta property="og:site_name" content="Калькулятор Судьбы">
+
+    <!-- 3. СТРУКТУРИРОВАННЫЕ ДАННЫЕ ДЛЯ ПОИСКОВИКОВ (SCHEMA.ORG) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Совместимость имён: нумерологический расчёт онлайн",
+      "description": "Бесплатный онлайн расчёт совместимости имён. Детальный разбор отношений пары: характер, эмоции, цели, динамика.",
+      "url": "https://калькулятор-судьбы.рф/sovmest-form",
+      "mainEntity": {
+        "@type": "SoftwareApplication",
+        "name": "Калькулятор совместимости имён",
+        "applicationCategory": "Lifestyle",
+        "operatingSystem": "All",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "RUB"
+        }
+      }
+    }
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
