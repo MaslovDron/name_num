@@ -19,6 +19,11 @@ include 'app/controllers/NameController.php';
     <link rel="stylesheet" href="<?=ABS_PATH?>assets/css/all-style.css">
 </head>
 <body>
+    <!-- шапка -->
+        <?php  
+            include_once 'app/include/header-front.php';
+        ?>
+    <!-- шапка -->
     <div class="landing">
         <!-- ===== ГЕРОЙ ===== -->
         <div class="hero">
