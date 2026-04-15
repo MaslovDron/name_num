@@ -1,0 +1,126 @@
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #fefaf4;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            color: #2b2b2b;
+            line-height: 1.6;
+        }
+        .wrapper {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 40px 30px;
+        }
+        /* Эзотерический хедер */
+        .hero {
+            background: linear-gradient(145deg, #f7f1e6, #fffcf7);
+            border-left: 12px solid #b38b5f;
+            border-radius: 0 50px 50px 0;
+            padding: 60px 50px;
+            margin-bottom: 60px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.03);
+            position: relative;
+        }
+        .hero::after {
+            content: "✦ ✦ ✦";
+            position: absolute;
+            bottom: 20px;
+            right: 40px;
+            color: #c6ad8c;
+            letter-spacing: 10px;
+            font-size: 22px;
+        }
+        h1 {
+            font-size: 48px;
+            font-weight: 400;
+            color: #3e2e24;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+         @media (max-width: 500px) {
+            h1 {
+                font-size: 36px;
+                color: green;
+            }
+        }
+        .subhead {
+            font-size: 22px;
+            color: #7a6856;
+            font-style: italic;
+            max-width: 800px;
+        }
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+        .calc-card {
+            background: white;
+            padding: 35px 25px;
+            border-radius: 30px;
+            border: 1px solid #f0e4d6;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.02);
+            transition: all 0.2s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .calc-card:hover {
+            border-color: #b38b5f;
+            box-shadow: 0 20px 30px rgba(166, 124, 82, 0.08);
+            transform: translateY(-5px);
+        }
+        .card-icon {
+            font-size: 44px;
+            margin-bottom: 20px;
+            color: #9e7e5e;
+        }
+        .calc-card h3 {
+            font-size: 26px;
+            font-weight: 400;
+            margin-bottom: 15px;
+            border-bottom: 2px dotted #e1d4c5;
+            padding-bottom: 15px;
+        }
+        .calc-card p {
+            color: #6a5a4c;
+            margin-bottom: 25px;
+        }
+        .badge {
+            display: inline-block;
+            background: #efe7df;
+            color: #5e4737;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 15px;
+            letter-spacing: 1px;
+        }
+        footer {
+            margin-top: 80px;
+            padding: 30px 0;
+            border-top: 2px solid #e5dbd1;
+            text-align: center;
+            color: #8b7a6b;
+            font-style: italic;
+        }
+  .footer-pif {
+    text-align: center;
+    margin-top: 60px;
+    padding: 30px 0;
+    color: #8b7a6b;
+    border-top: 2px solid #f0e4d6;
+    font-size: 15px;
+}
+
+.footer-pif p {
+    margin: 8px 0;
+}
+
+.footer-pif i {
+    color: #b38b5f;
+    margin-right: 8px;
+}
