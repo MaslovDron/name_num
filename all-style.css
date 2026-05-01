@@ -18,10 +18,12 @@
     display: flex;
     /* justify-content: center; */
     align-items: center;
+    justify-content: space-between;
 }
 
 /* Логотип */
-.logo a {
+.logo a,
+.header-blog-link a {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -32,11 +34,13 @@
     transition: opacity 0.2s;
 }
 
-.logo a:hover {
+.logo a:hover,
+.header-blog-link a:hover {
     opacity: 0.8;
 }
 
-.logo i {
+.logo i, 
+.header-blog-link a i {
     color: #b38b5f;
     font-size: 28px;
 }
@@ -60,7 +64,8 @@
         font-size: 20px;
     }
     
-    .logo i {
+    .logo i, 
+    .header-blog-link a i {
         font-size: 24px;
     }
 }
@@ -70,14 +75,18 @@
         padding: 8px 15px;
     }
     
-    .logo a {
+    .logo a,
+    .header-blog-link a {
         font-size: 18px;
     }
     
-    .logo i {
+    .logo i,
+    .header-blog-link a i {
         font-size: 22px;
     }
 }
+
+
 /* хеадер */
 /* футер */
 .site-footer {
