@@ -1,0 +1,43 @@
+RewriteEngine On
+RewriteBase /numerolog/
+
+# Режим отладки
+php_flag display_errors on
+php_flag display_startup_errors on
+php_value error_reporting -1
+
+# Кодировка
+AddDefaultCharset UTF-8
+AddCharset UTF-8 .html .css .js .php .txt .xml .json
+
+# ========== РАЗРЕШЕНИЯ ДЛЯ КОНКРЕТНЫХ ФАЙЛОВ ==========
+RewriteCond %{REQUEST_URI} ^/numerolog/app/include/sh-blog\.php [NC]
+RewriteRule ^ - [L]
+
+RewriteCond %{REQUEST_URI} ^/numerolog/app/include/delete-blog\.php [NC]
+RewriteRule ^ - [L]
+
+# ========== ЗАПРЕТ НА ПРЯМОЙ ДОСТУП К ФАЙЛАМ СТРАНИЦ ==========
+#RewriteRule ^(home|index|test|blog)\.php(/.*)?$ - [F,L,NC]
+#я колдую
+RewriteRule ^(home|index|test)\.php(/.*)?$ - [F,L,NC]
+#я колдую
+# ========== ПРЯМОЙ ДОСТУП К СУЩЕСТВУЮЩИМ ФАЙЛАМ И ПАПКАМ ==========
+# Если файл существует — не трогать (НО только если это НЕ PHP-файл из запрещённых)
+RewriteCond %{REQUEST_FILENAME} -f
+# Исключаем файлы, которые уже заблокированы выше
+#RewriteCond %{REQUEST_URI} !/(home|index|test|blog|article)\.php
+#я колдую
+RewriteCond %{REQUEST_URI} !/(home|index|test|article)\.php
+#я колдую
+RewriteRule ^ - [L]
+
+# ========== ЗАЩИТА СЕКРЕТНЫХ ПАПОК ==========
+RewriteRule ^app/controllers/ - [F,L,NC]
+RewriteRule ^app/include/ - [F,L,NC]
+RewriteRule ^app/(?!index\.php|main\.php|about\.php|contacts\.php|404\.php) - [F,L,NC]
+RewriteRule ^vendor/ - [F,L,NC]
+
+# ========== ПЕРЕХВАТ ВСЕХ ОСТАЛЬНЫХ ЗАПРОСОВ ==========
+# ВСЕ запросы (включая article/slug-статьи) идут в router.php
+RewriteRule ^(.*)$ router.php [QSA,L]
