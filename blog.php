@@ -51,6 +51,7 @@ if (empty($articles) && $page > 1) {
    <!-- font awesome cdn link  -->
    <!-- style-->
    <link rel="stylesheet" href="<?=ABS_PATH?>assets/css/all-style.css">
+   <link rel="stylesheet" href="<?=ABS_PATH?>assets/css/blog.css">
    <!-- style-->
 </head>
 <body>
@@ -58,7 +59,7 @@ if (empty($articles) && $page > 1) {
 include 'app/include/header-front.php';
 ?>
 <section class="main">
-    <div class="zagh1"><h1>Блог нумеролога</h1></div>
+    <div class="zagh1"><h1>Блог</h1></div>
     <div class="statii-all">
       <?php
         foreach($articles as $article)
@@ -70,15 +71,13 @@ include 'app/include/header-front.php';
                         </div>
                         <div class="article-text">
                             <div class="article-zag">
-                              <!-- <a href="<?php echo ABS_PATH.'supp/article.php?odst='.$article['id']?>"><?php echo $article['title'];?></a> -->
                                <a href="<?php echo ABS_PATH.'article/'.$article['slug']?>"><?php echo $article['title'];?></a>
                             </div>
                             <div class="article-txt">
-                                <!--<?php echo $article['content'];?>-->
-                                <?php echo Anons($article['content'], $length = 200, $ending = '...')?>
+                                <?php echo Anons($article['content'], $length = 300, $ending = '...')?>
+                                <!-- <?php echo $article['content']; ?> -->
                             </div>
                             <div class="article-href">
-                              <!-- <a href="<?php echo ABS_PATH.'supp/article.php?odst='.$article['id']?>">Подробнее</a> -->
                                <a href="<?php echo ABS_PATH.'article/'.$article['slug']?>">Подробнее</a> 
                           </div>                          
                         </div>
@@ -168,7 +167,7 @@ if($page<$total_pages-1)
 <!-- постраничка  -->
 </section>
 <?php
-include 'app/include/FooterAll.php';
+ include 'app/include/FooterAll.php';
 ?>
 </body>
 </html>
