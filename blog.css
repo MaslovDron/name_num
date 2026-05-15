@@ -18,6 +18,7 @@ body {
     max-width: 1200px;
     padding: 20px 20px 40px;
         margin: 0 auto;
+        box-sizing: border-box; /* padding не увеличивает общую ширину */
 }
 body{
     background: #fefaf4;
@@ -52,6 +53,12 @@ body{
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
 
 }
+@media (max-width: 800px) {
+    .article {
+        flex-direction: column;
+        min-height: auto;
+    }
+}
 .article-img{
     position: relative;
     overflow: hidden;
@@ -64,6 +71,17 @@ body{
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s ease;
+}
+@media (max-width: 800px) {
+    .article-img {
+        display: grid;
+        width: 100%;
+        justify-content: center; /* ← добавить */
+    }
+
+    .article-img img {
+        text-align: center;
+    }
 }
 .article-zag a {
     font-size: 1.5rem;
@@ -82,13 +100,6 @@ body{
 .article-zag a:hover{
     text-decoration: underline;
 }
-.article-img {
-    position: relative;
-    overflow: hidden;
-    width: 250px;
-    flex: 0 0 250px;
-    min-height: 250px;
-}
 .article-text {
     padding: 25px;
     position: relative;
@@ -104,10 +115,6 @@ body{
     text-align: right;
 }
 
-.article-href {
-    padding-bottom: .3rem;
-    text-align: right;
-}
 .article-href a {
     padding: .8rem 1.2rem;
     margin-bottom: .5rem;
