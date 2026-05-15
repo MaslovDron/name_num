@@ -74,13 +74,19 @@ body{
 }
 @media (max-width: 800px) {
     .article-img {
-        display: grid;
+        /* display: grid;
         width: 100%;
-        justify-content: center; /* ← добавить */
+        justify-content: center; */
+           width: 100%;           /* Сам контейнер — на всю ширину */
+    min-height: 220px;    
+    display: flex;        
+    justify-content: center; /* Картинка по центру горизонтально */
     }
 
     .article-img img {
-        text-align: center;
+         width: auto;           /* Ширина картинки = её оригинальная ширина */
+         height: auto;          /* Высота = высота контейнера (220px) */
+         max-width: 300px       /* Если картинка шире контейнера — сжимаем */
     }
 }
 .article-zag a {
