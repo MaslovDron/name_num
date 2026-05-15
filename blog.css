@@ -74,19 +74,17 @@ body{
 }
 @media (max-width: 800px) {
     .article-img {
-        /* display: grid;
         width: 100%;
-        justify-content: center; */
-           width: 100%;           /* Сам контейнер — на всю ширину */
-    min-height: 220px;    
-    display: flex;        
-    justify-content: center; /* Картинка по центру горизонтально */
+        height: 220px;
+        display: flex;
+        justify-content: center;
+        background: #f0f0f0;
     }
-
     .article-img img {
-         width: auto;           /* Ширина картинки = её оригинальная ширина */
-         height: auto;          /* Высота = высота контейнера (220px) */
-         max-width: 300px       /* Если картинка шире контейнера — сжимаем */
+        width: auto;
+        height: 100%;
+        max-width: 100%;
+        object-fit: contain;
     }
 }
 .article-zag a {
@@ -117,7 +115,7 @@ body{
 }
 
 .article-href {
-    padding-bottom: .3rem;
+    padding-bottom: .4rem;
     text-align: right;
 }
 
@@ -147,6 +145,7 @@ body{
     border-radius: 4px;
     margin: 4px;
     padding: 4px;
+    border: none; /* Убираем лишнюю границу */
 }
 .pagin ul li.page-item {
     border: 1px solid #000;
@@ -156,4 +155,15 @@ body{
 }
 .pagin ul li.page-item a{
         text-decoration: none;
+}
+.pagin ul li.page-item a {
+    display: inline-block;
+    padding: 6px 12px;
+    transition: background 0.2s;
+}
+.pagin ul li.page-item a:hover {
+    background: #e0d6cc;
+}
+.page-active {
+    border: none; /* Убираем лишнюю границу */
 }
