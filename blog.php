@@ -44,7 +44,46 @@ if (empty($articles) && $page > 1) {
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Блог нумеролога</title>
+   <!-- /////////////////////////////////////////////// -->
+    <?php
+    $current_page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$page_suffix = ($current_page > 1) ? ' - Страница ' . $current_page : '';
+
+// Базовое название сайта (можно вынести в config.php)
+$site_name = $site_url; // Замените на реальное
+
+// --- Заголовок страницы (Title) ---
+// Важно: уникальный для каждой страницы пагинации
+$page_title = "Блог по нумерологии: статьи о матрице судьбы и психоматрице" . $page_suffix;
+?>
+
+<!-- Основные SEO мета-теги -->
+<title><?php echo htmlspecialchars($page_title); ?></title>
+<meta name="description" content="Полезные статьи о нумерологии, матрице судьбы, психоматрице Пифагора. Расшифровка чисел, анализ характера, совместимости и предназначения<?php echo ($current_page > 1 ? '. Страница ' . $current_page : ''); ?>">
+<!-- Роботы: индексировать и следовать по ссылкам -->
+<meta name="robots" content="index, follow">
+
+<!-- Canonical ссылка (указывает основную страницу, чтобы избежать дублей при пагинации) -->
+<link rel="canonical" href="<?php echo ABS_PATH . ($current_page > 1 ? 'blog/page/' . $current_page : 'blog'); ?>" />
+
+<!-- Open Graph для соцсетей (Facebook, VK, Telegram) -->
+<meta property="og:title" content="<?php echo htmlspecialchars($page_title); ?>" />
+<meta property="og:description" content="Статьи о нумерологии, матрице судьбы и психоматрице Пифагора" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="<?php echo ABS_PATH . ($current_page > 1 ? 'blog/page/' . $current_page : 'blog'); ?>" />
+<meta property="og:image" content="<?php echo ABS_PATH; ?>assets/images/og-blog-image.jpg" /> <!-- Создайте такое изображение -->
+<meta property="og:site_name" content="<?php echo $site_name; ?>" />
+<meta property="og:locale" content="ru_RU" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="<?php echo htmlspecialchars($page_title); ?>" />
+<meta name="twitter:description" content="Статьи о нумерологии, матрице судьбы и психоматрице Пифагора" />
+<meta name="twitter:image" content="<?php echo ABS_PATH; ?>assets/images/og-blog-image.jpg" />
+
+<!-- Дополнительный тег для автора -->
+<meta name="author" content="Нумеролог" />
+    <!-- ///////////////////////////////////////////// -->
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
