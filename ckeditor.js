@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'MediaEmbed', 'LinkImage', 'PageBreak',
                 'HorizontalLine', 'HtmlEmbed', 'Markdown',
                 'CodeBlock', 'Highlight', 'FontSize',
-                'FontFamily', 'FontColor', 'Alignment',
+                'FontFamily', 'FontColor', //'Alignment',
                 'Indent', 'IndentBlock', 'TodoList',
                 'SpecialCharacters',
                 'Autoformat', 'BalloonToolbar', 'BlockToolbar' // ДОБАВЛЯЕМ ЭТИ
