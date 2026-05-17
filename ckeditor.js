@@ -128,16 +128,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 'SpecialCharacters',
                 'Autoformat', 'BalloonToolbar', 'BlockToolbar' // ДОБАВЛЯЕМ ЭТИ
             ],
+             alignment: {
+            options: ['left', 'center', 'right', 'justify']
+        },
             
             toolbar: {
-                items: [
-                    'heading', '|',
-                    'bold', 'italic', 'underline', '|',
-                    'justifyLeft', 'justifyCenter', 'justifyRight', 'justifyBlock', '|',
-                    'bulletedList', 'numberedList', '|',
-                    'link', 'uploadImage', '|',
-                    'undo', 'redo'
-                ],
+                        items: [
+                'heading', '|',
+                'bold', 'italic', 'underline', '|',
+                'alignment:left', 'alignment:center', 'alignment:right', 'alignment:justify', '|',
+                'bulletedList', 'numberedList', '|',
+                'link', 'uploadImage', '|',
+                'undo', 'redo'
+            ],
                 shouldNotGroupWhenFull: true // ПРОСТАЯ ПАНОРАМА
             },
             
