@@ -2,7 +2,7 @@
 include 'app/include/config.php';
 include 'app/include/connect.php';
 include 'app/include/functions-front.php';
-include 'app/controllers/NameController.php';
+include 'app/controllers/YearController.php';
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -74,19 +74,27 @@ include 'app/controllers/NameController.php';
         <!-- ФОРМА (только дата рождения + чекбокс) -->
         <div class="form-section" id="calculate">
             <form method="POST" action="" id="yearForm">
-                <div class="error" style="display: none;"></div>
+                <p class="error" style="display: none;"></p>
+                <?php
+                if($errMsg!='')
+                {
+                    ?>
+                <p><?php echo $errMsg; ?></p>
+                <?php 
+                }
+                 ?>
                 
                 <div class="form-grid">
                     <div class="form-field">
                         <label>📅 ВАША ДАТА РОЖДЕНИЯ</label>
-                        <input type="date" name="birthdate" class="date-input" id="birthdate" required>
+                        <input type="date" name="birthdate" class="date-input" value="<?php echo htmlspecialchars($birthDate); ?>" id="birthdate">
                         <small style="display: block; margin-top: 8px; color: #8b7a6b;">Расчёт для текущего <span id="currentYear"></span> года</small>
                     </div>
                     
                     <div class="consent-wrapper">
                         <div class="consent-item">
                             <div class="consent-checkbox">
-                                <input type="checkbox" name="consent" value="1" id="consentData">
+                                <input type="checkbox" name="consent" value="<?php echo $ch1; ?>" id="consentData">
                                 <span class="checkmark"></span>
                             </div>
                             <label for="consentData" class="consent-text">
@@ -99,7 +107,7 @@ include 'app/controllers/NameController.php';
                     <!-- <input type="hidden" name="year" id="currentYearInput"> -->
                     
                     <div class="form-button">
-                        <button type="submit" name="submitYearCalc" class="calc-btn">
+                        <button type="submit" name="FrYearCalc" class="calc-btn">
                             <span>🌟</span> Узнать число года
                         </button>
                     </div>
@@ -335,44 +343,6 @@ include 'app/controllers/NameController.php';
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="<?php echo ABS_PATH ?>assets/js/swipper.js"></script>
     <!-- Валидация формы -->
-    <script src="<?=ABS_PATH?>asset/css/year-valid.js"></script>
-    
-    <script>
-        // Установка текущего года
-        // document.addEventListener('DOMContentLoaded', function() {
-        //     const currentYear = new Date().getFullYear();
-        //     document.getElementById('currentYear').textContent = currentYear;
-        //     document.getElementById('currentYearInput').value = currentYear;
-            
-            // Инициализация Swiper
-           /*
-            const swiper = new Swiper('.reviewsSwiper', {
-                slidesPerView: 1,
-                spaceBetween: 30,
-                loop: true,
-                autoplay: {
-                    delay: 5000,
-                    disableOnInteraction: false,
-                },
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                },
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-                breakpoints: {
-                    768: {
-                        slidesPerView: 2,
-                    },
-                    1024: {
-                        slidesPerView: 3,
-                    },
-                }
-            });
-            */
-        // });
-    </script>
+    <!-- <script src="<?=ABS_PATH?>assets/js/year-valid.js"></script> -->
 </body>
 </html>
