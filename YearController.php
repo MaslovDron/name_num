@@ -2,10 +2,13 @@
 $errMsg='';
 $birthDate='';
 $ch1='';
+//функции
+
+//функции
 //на фронте
 if($_SERVER['REQUEST_METHOD']=='POST' && isset ($_POST['FrYearCalc']))
 {
-    tt($_POST);
+   // tt($_POST);
     $birthDate = $_POST['birthdate'];
        if (empty($birthDate)) {
         $errMsg .='Вы не ввели дату<br>';
@@ -29,6 +32,11 @@ if($_SERVER['REQUEST_METHOD']=='POST' && isset ($_POST['FrYearCalc']))
         {
             $errMsg .='Дайте согласие на обработкуперсональных данных<br>';
         }
+        //когда прошла валидация
+        if(empty($errMsg))
+            {
+                
+            }
 }
 //на фронте
 ?>
