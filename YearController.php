@@ -35,6 +35,9 @@ if($_SERVER['REQUEST_METHOD']=='POST' && isset ($_POST['FrYearCalc']))
         //когда прошла валидация
         if(empty($errMsg))
             {
+                //подключаем расшифровку
+                include '../includde/year-form.php';
+                //подключаем расшифровку
                 //функции для расчета персонального года
                 // Функция редукции чисел (с мастер-числами 11,22,33)
 function reduceNumber($num) {
@@ -193,6 +196,7 @@ function calculateAllNumbers($birthdate, $currentYear) {
             'current_year' => $currentYear,
             'personal_year' => $personalYear,
             'all_numbers' => $allNumbers,
+            'interpretation' => getYearFreeInterpretation($personalYear), 
             'calculated_at' => date('d.m.Y H:i:s')
         ];
         
