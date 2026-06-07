@@ -70,4 +70,5 @@ function getUltimateBooks($n) { return getUltimateInterpretation($n)['books']; }
 function getUltimateTravelTips($n) { return getUltimateInterpretation($n)['travel_tips']; }
 function getUltimateSummary($n) { return getUltimateInterpretation($n)['summary']; }
 function getUltimateChecklist($n) { return getUltimateInterpretation($n)['checklist']; }
+?>
 function getUltimateMainLesson($n) { return getUltimateInterpretation($n)['main_lesson']; }
