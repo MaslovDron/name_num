@@ -1,22 +1,19 @@
 <?php
-// ============================================================
-// ULTIMATE РАСШИФРОВКА ПЕРСОНАЛЬНОГО ГОДА
-// Платная версия — 15+ страниц A4 на клиента
-// 9 чисел × 30 разделов = ~6000 строк
-// ============================================================
-
 $yearUltimateInterpretations = [
-//расшифровка 1 числа
-//расшифровка 2 числа
-//расшифровка 3 числа
-//расшифровка 4 числа
-//расшифровка 5 числа
-//расшифровка 6 числа
-//расшифровка 7 числа
-//расшифровка 8 числа
-//расшифровка 9 числа
+
+// ==================== ЧИСЛО 1 ====================
+// ==================== ЧИСЛО 2 ====================
+// ==================== ЧИСЛО 3 ====================
+// ==================== ЧИСЛО 4 ====================
+// ==================== ЧИСЛО 5 ====================
+// ==================== ЧИСЛО 6 ====================
+// ==================== ЧИСЛО 7 ====================
+// ==================== ЧИСЛО 8 ====================
+// ==================== ЧИСЛО 9 ====================
 ];
-//и после этого массива вызываются функции
+
+// ==================== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ====================
+
 function getUltimateInterpretation($number) {
     global $yearUltimateInterpretations;
     $num = $number;
@@ -70,5 +67,5 @@ function getUltimateBooks($n) { return getUltimateInterpretation($n)['books']; }
 function getUltimateTravelTips($n) { return getUltimateInterpretation($n)['travel_tips']; }
 function getUltimateSummary($n) { return getUltimateInterpretation($n)['summary']; }
 function getUltimateChecklist($n) { return getUltimateInterpretation($n)['checklist']; }
-?>
 function getUltimateMainLesson($n) { return getUltimateInterpretation($n)['main_lesson']; }
+?>
