@@ -1,6 +1,7 @@
 <?php
 $errMsg='';
 $birthDate='';
+$targetYear='';
 $ch1='';
 //функции
 
