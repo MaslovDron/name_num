@@ -112,6 +112,40 @@ if($_SERVER['REQUEST_METHOD']=='POST' && isset ($_POST['BackYearCalc']))
        if ($targetYearInt < $currentYearInt) {
             $errMsg .= "Интересующий год ($targetYearInt) не может быть меньше текущего года ($currentYearInt)<br>";
         }
+        if(empty($errMsg))
+            {
+                //подключаем функции для персонального года
+                include '../app/include/pers-year-function.php';
+                //подключаем функции для персонального года
+                //подключаем расшифровку  для персонального года
+                include '../app/include/pers-year-interpr-supp.php';
+                //подключаем расшифровку  для персонального года
+                 // Берём год из POST (пользователь ввёл в поле intgod)
+    $targetYear = $targetYearInt; // $targetYearInt уже есть из валидации
+    
+    // Рассчитываем персональный год
+    $personalYear = calculatePersonalYear($birthDate, $targetYear);
+    
+    // Рассчитываем все контрольные числа
+    $allNumbers = calculateAllNumbers($birthDate, $targetYear);
+    
+    // Получаем расшифровку для этого года
+    $interpretation = getUltimateInterpretation($personalYear);
+    
+    // Заполняем сессию
+    $_SESSION['year_report'] = [
+        'birthdate' => $birthDate,
+        'target_year' => $targetYear,
+        'personal_year' => $personalYear,
+        'all_numbers' => $allNumbers,
+        'interpretation' => $interpretation,
+        'generated_at' => date('d.m.Y H:i:s')
+    ];
+                //открываем файл с результатом
+                header('Location: ' . ABS_PATH . 'supp/pers-year-result.php');
+                exit;
+                //открываем файл с результатом
+            }
 
 }
 //на беке
