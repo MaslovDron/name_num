@@ -334,6 +334,27 @@ $interpretation = $data['interpretation'];
             <div class="quality-title">📚 Обучение</div>
             <div class="quality-text"><?= $interpretation['learning'] ?></div>
         </div>
+        <!-- Помесячный прогноз -->
+<h2 class="matrix-title"><i class="fas fa-calendar-alt"></i> Помесячный прогноз на <?= $targetYear ?> год</h2>
+<div class="monthly-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; margin-bottom: 40px;">
+    <?php
+    $monthNames = [
+        1 => 'Январь', 2 => 'Февраль', 3 => 'Март',
+        4 => 'Апрель', 5 => 'Май', 6 => 'Июнь',
+        7 => 'Июль', 8 => 'Август', 9 => 'Сентябрь',
+        10 => 'Октябрь', 11 => 'Ноябрь', 12 => 'Декабрь'
+    ];
+    
+    for ($month = 1; $month <= 12; $month++):
+        // Проверяем, есть ли months в интерпретации
+        $monthAdvice = isset($interpretation['months'][$month]) ? $interpretation['months'][$month] : 'Рекомендация на этот месяц';
+    ?>
+    <div class="month-card" style="background: #f9f5f0; border-radius: 15px; padding: 15px; border: 1px solid #f0e4d6;">
+        <div class="month-name" style="font-weight: bold; color: #b38b5f; margin-bottom: 10px; font-size: 18px;"><?= $monthNames[$month] ?></div>
+        <div class="month-advice" style="font-size: 13px; color: #4a4a4a; line-height: 1.5;"><?= nl2br(htmlspecialchars($monthAdvice)) ?></div>
+    </div>
+    <?php endfor; ?>
+</div>
         
         <!-- Исходные данные -->
         <h2 class="matrix-title"><i class="fas fa-database"></i> Исходные данные</h2>
