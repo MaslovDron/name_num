@@ -94,7 +94,7 @@ include 'app/controllers/YearController.php';
                     <div class="consent-wrapper">
                         <div class="consent-item">
                             <div class="consent-checkbox">
-                                <input type="checkbox" name="consent" value="<?php echo $ch1; ?>" id="consentData">
+                                <input type="checkbox" name="consent" <?php echo $ch1; ?> id="consentData">
                                 <span class="checkmark"></span>
                             </div>
                             <label for="consentData" class="consent-text">
@@ -201,121 +201,27 @@ include 'app/controllers/YearController.php';
 
             <div class="swiper reviewsSwiper">
                 <div class="swiper-wrapper">
-                    <!-- Отзыв 1 -->
+                    <?php  
+                    $otzivi = selectArticlesFiltered('otzivi', '', [
+                        'is_active' => 1,
+                        'id_calc' => 17 // ID вашего калькулятора совместимости в БД
+                    ]);
+                    foreach($otzivi as $otziv) {
+                    ?>
                     <div class="swiper-slide">
                         <div class="testimonial-card">
                             <div class="testimonial-header">
-                                <div class="testimonial-avatar">🌟</div>
                                 <div class="testimonial-author">
-                                    <h4>Екатерина С.</h4>
-                                    <div class="testimonial-meta">Москва</div>
+                                    <h4><?php echo htmlspecialchars($otziv['name']); ?></h4>
                                 </div>
                             </div>
                             <div class="testimonial-text">
-                                "Очень точный расчёт! Мне выпало число 6 — год семьи, и действительно, 
-                                я встретила свою вторую половинку. Спасибо за такой инструмент!"
+                                <?php echo nl2br(htmlspecialchars($otziv['description'])); ?>
                             </div>
-                            <div class="testimonial-rating">★★★★★</div>
-                            <div class="testimonial-date">15 марта 2026</div>
+                            <!-- <div class="testimonial-date"><?php echo substr($otziv['date_create'], 0, 10); ?></div> -->
                         </div>
                     </div>
-
-                    <!-- Отзыв 2 -->
-                    <div class="swiper-slide">
-                        <div class="testimonial-card">
-                            <div class="testimonial-header">
-                                <div class="testimonial-avatar">🚀</div>
-                                <div class="testimonial-author">
-                                    <h4>Дмитрий В.</h4>
-                                    <div class="testimonial-meta">Санкт-Петербург</div>
-                                </div>
-                            </div>
-                            <div class="testimonial-text">
-                                "Персональный год 8 — карьерный рост! Открыл свой бизнес, 
-                                и всё сложилось именно так, как описано в расшифровке. 
-                                Рекомендую всем, кто планирует важные шаги."
-                            </div>
-                            <div class="testimonial-rating">★★★★★</div>
-                            <div class="testimonial-date">2 февраля 2026</div>
-                        </div>
-                    </div>
-
-                    <!-- Отзыв 3 -->
-                    <div class="swiper-slide">
-                        <div class="testimonial-card">
-                            <div class="testimonial-header">
-                                <div class="testimonial-avatar">🎨</div>
-                                <div class="testimonial-author">
-                                    <h4>Анна М.</h4>
-                                    <div class="testimonial-meta">Казань</div>
-                                </div>
-                            </div>
-                            <div class="testimonial-text">
-                                "Число 3 — творческий год. Начала рисовать после долгого перерыва, 
-                                продала первую картину! Не ожидала такого совпадения. 
-                                Теперь каждый год проверяю!"
-                            </div>
-                            <div class="testimonial-rating">★★★★★</div>
-                            <div class="testimonial-date">25 января 2026</div>
-                        </div>
-                    </div>
-
-                    <!-- Отзыв 4 -->
-                    <div class="swiper-slide">
-                        <div class="testimonial-card">
-                            <div class="testimonial-header">
-                                <div class="testimonial-avatar">🧘</div>
-                                <div class="testimonial-author">
-                                    <h4>Ольга К.</h4>
-                                    <div class="testimonial-meta">Екатеринбург</div>
-                                </div>
-                            </div>
-                            <div class="testimonial-text">
-                                "Год 4 научил меня дисциплине и порядку. Укрепила здоровье, 
-                                навела порядок в финансах. Спасибо за точные подсказки!"
-                            </div>
-                            <div class="testimonial-rating">★★★★★</div>
-                            <div class="testimonial-date">10 декабря 2025</div>
-                        </div>
-                    </div>
-
-                    <!-- Отзыв 5 -->
-                    <div class="swiper-slide">
-                        <div class="testimonial-card">
-                            <div class="testimonial-header">
-                                <div class="testimonial-avatar">✈️</div>
-                                <div class="testimonial-author">
-                                    <h4>Максим Т.</h4>
-                                    <div class="testimonial-meta">Новосибирск</div>
-                                </div>
-                            </div>
-                            <div class="testimonial-text">
-                                "Число 5 — год перемен! Сменил работу, переехал в другой город. 
-                                Всё прошло как по маслу. Очень крутой калькулятор!"
-                            </div>
-                            <div class="testimonial-rating">★★★★★</div>
-                            <div class="testimonial-date">5 ноября 2025</div>
-                        </div>
-                    </div>
-
-                    <!-- Отзыв 6 -->
-                    <div class="swiper-slide">
-                        <div class="testimonial-card">
-                            <div class="testimonial-header">
-                                <div class="testimonial-avatar">💎</div>
-                                <div class="testimonial-author">
-                                    <h4>Татьяна Р.</h4>
-                                    <div class="testimonial-meta">Краснодар</div>
-                                </div>
-                            </div>
-                            <div class="testimonial-text">
-                                "Год 9 помог завершить старые проекты и расстаться с токсичными людьми. 
-                                Освободила место для нового! Благодарю!"
-                            </div>
-                            <div class="testimonial-rating">★★★★★</div>
-                            <div class="testimonial-date">20 октября 2025</div>
-                        </div>
-                    </div>
+                    <?php } ?>
                 </div>
                 
                 <!-- Кнопки навигации -->
