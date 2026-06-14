@@ -33,7 +33,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['FrMonthCalc'])) {
         //валидация пройдена
         if(empty($errMsg))
             {
-                
+                //подключаем расшифровку
+                include 'app/include/month-front.php';
+                //подключаем расшифровку
+                //подключаем функции для месяца
+                include 'app/include/month-function.php';
+                //подключаем функции для месяца
+
+            // Разбираем дату рождения
+        $birthDateObj = new DateTime($birthDate);
+        $day = (int)$birthDateObj->format('d');
+        $month = (int)$birthDateObj->format('m');
+        
+        // Текущий месяц и год (можно будет заменить на выбранные позже)
+        $currentMonth = (int)date('n');  // 1..12
+        $currentYear = (int)date('Y');
+        
             }
 }
 //на фронте
