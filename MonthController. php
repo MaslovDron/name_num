@@ -30,6 +30,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['FrMonthCalc'])) {
         {
             $errMsg .='Дайте согласие на обработку персональных данных<br>';
         }
+        //валидация пройдена
+        if(empty($errMsg))
+            {
+                
+            }
 }
 //на фронте
 ?>
