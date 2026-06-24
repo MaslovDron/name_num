@@ -1,7 +1,7 @@
 <?php
 $errMsg='';
 $birthDate='';
-//$targetYear='';
+$targetMonth='';
 $ch1='';
 //на фронте
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['FrMonthCalc'])) {
@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['FrMonthCalc'])) {
         }
     else
         {
-            $ch1=='';
+            $ch1='';
         }
     if (empty($chdate)) 
         {
@@ -49,6 +49,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['FrMonthCalc'])) {
         $currentYear = (int)date('Y');
 
         $result = calculatePersonalMonth($day, $month, $currentMonth, $currentYear);
+        $personalMonth = $result['personal_month'];
+        // Получаем расшифровку ДО сохранения в сессию
+        $interpretation = getMonthInterpretation($personalMonth);
                 
         $_SESSION['month_result'] = [
             'birthdate' => $birthDate,
@@ -65,7 +68,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['FrMonthCalc'])) {
                 'year_reduced' => $result['details']['year_reduced'],
                 'personal_year_raw' => $result['details']['personal_year_raw'],
                 'personal_month_raw' => $result['details']['personal_month_raw']
-            ]
+            ],
+            // 👇 СОХРАНЯЕМ РАСШИФРОВКУ
+            'interpretation' => $interpretation
         ];
         
         header('Location: ' . ABS_PATH . 'personal-month');
@@ -73,4 +78,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['FrMonthCalc'])) {
             }
 }
 //на фронте
+//на бэке
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['BackMonthCalc'])) {
+    //tt($_POST);
+     $birthDate = $_POST['daterozd'];
+       if (empty($birthDate)) {
+        $errMsg .='Вы не ввели дату рождения<br>';
+    }
+        // 2. Валидация даты
+    $date = DateTime::createFromFormat('Y-m-d', $birthDate);
+    if (!$date) {
+        $errMsg.='Вы некорректно ввели дату<br>';
+    }
+      $targetMonth = trim($_POST['intMon'] ?? '');
+        if (empty($$targetMonth)) {
+        $errMsg .='Вы не ввели интересующий год<br>';
+    }
+    $targetMonInt = (int)$targetMonth;
+    $currentYearInt = (int)date('Y');
+       if ($targetMonInt < $currentYearInt) {
+            $errMsg .= "Интересующий год ($targetMonInt) не может быть меньше текущего года ($currentYearInt)<br>";
+        }
+        //1111
+        if(empty($errMsg))
+            {
+                //
+            }
+        //1111
+}
+//на бэке
 ?>
