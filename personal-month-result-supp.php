@@ -94,20 +94,20 @@ unset($_SESSION['month_result_sup']);
         }
         
         .number-card-result .label {
-            font-size: 14px;
+            font-size: 19px;
             color: #6a5a4c;
             margin-top: 5px;
         }
         
         .number-card-result .desc {
-            font-size: 12px;
+            font-size: 18px;
             color: #8b7a6b;
             margin-top: 8px;
         }
         
         .week-grid-result {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 20px;
             margin-bottom: 40px;
         }
@@ -127,20 +127,20 @@ unset($_SESSION['month_result_sup']);
         }
         
         .week-card-result .week-label {
-            font-size: 14px;
+            font-size: 19px;
             color: #6a5a4c;
             margin: 5px 0 10px;
         }
         
         .week-card-result .week-text {
-            font-size: 13px;
+            font-size: 18px;
             color: #4a3f38;
             line-height: 1.4;
         }
         
         .day-grid-result {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 12px;
             margin-bottom: 40px;
         }
@@ -156,11 +156,11 @@ unset($_SESSION['month_result_sup']);
         .day-card-result .day-label {
             font-weight: bold;
             color: #8b5f9e;
-            font-size: 14px;
+            font-size: 21px;
         }
         
         .day-card-result .day-text {
-            font-size: 12px;
+            font-size: 19px;
             color: #4a3f38;
             margin-top: 5px;
             line-height: 1.3;
@@ -183,6 +183,39 @@ unset($_SESSION['month_result_sup']);
             border-left: 6px solid #8b5f9e;
         }
         
+        .sector-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .sector-card {
+            background: #f9f5f0;
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid #f0e4d6;
+            transition: 0.2s;
+        }
+        
+        .sector-card:hover {
+            border-color: #8b5f9e;
+            transform: translateY(-3px);
+        }
+        
+        .sector-card .sector-title {
+            font-size: 21px;
+            font-weight: bold;
+            color: #8b5f9e;
+            margin-bottom: 10px;
+        }
+        
+        .sector-card .sector-text {
+            font-size: 19px;
+            color: #4a3f38;
+            line-height: 1.5;
+        }
+        
         @media print {
             @page { margin: 0.5cm; size: A4; }
             @top-center, @bottom-center { content: ""; }
@@ -202,6 +235,9 @@ unset($_SESSION['month_result_sup']);
             .day-grid-result {
                 grid-template-columns: repeat(2, 1fr);
             }
+            .sector-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -209,13 +245,13 @@ unset($_SESSION['month_result_sup']);
 <div class="landing">
     <div class="container">
         
-        <!-- Заголовок -->
+        <!-- ==================== ЗАГОЛОВОК ==================== -->
         <div class="header-pif">
             <h1><i class="fas fa-moon"></i> Персональный месяц</h1>
             <div class="subtitle">Детальный нумерологический прогноз</div>
         </div>
         
-        <!-- Информация о датах -->
+        <!-- ==================== ИНФОРМАЦИЯ О ДАТАХ ==================== -->
         <div class="date-info" style="display: flex; justify-content: center; align-items: center; gap: 30px; flex-wrap: wrap;">
             <div class="date-item">
                 <div class="date-value"><?= date('d', strtotime($birthdate)) ?></div>
@@ -230,17 +266,17 @@ unset($_SESSION['month_result_sup']);
             </div>
         </div>
         
-        <!-- Главное число месяца -->
+        <!-- ==================== ГЛАВНОЕ ЧИСЛО МЕСЯЦА ==================== -->
         <div class="compatibility-score" style="margin-bottom: 40px;">
             <div class="score-circle">
                 <div class="score-value"><?= $personalMonth ?></div>
-                <div class="score-label">персональный месяц</div>
+                <div class="score-label">персональный<br>месяц</div>
             </div>
             <div class="month-title"><?= $interpretation['title'] ?></div>
             <div class="month-short-desc" style="margin-top: 15px;"><?= $interpretation['subtitle'] ?? $interpretation['full_desc'] ?></div>
         </div>
         
-        <!-- Глобальный смысл месяца -->
+        <!-- ==================== ГЛОБАЛЬНЫЙ СМЫСЛ ==================== -->
         <div class="quality-card">
             <div class="quality-title">📖 Глобальный смысл месяца</div>
             <div class="quality-text"><?= $interpretation['full_desc'] ?></div>
@@ -251,13 +287,13 @@ unset($_SESSION['month_result_sup']);
             <div class="quality-text"><?= $interpretation['opportunities'] ?></div>
         </div>
         
-        <!-- Предостережения -->
+        <!-- ==================== ПРЕДОСТЕРЕЖЕНИЯ ==================== -->
         <div class="quality-card" style="border-left-color: #e74c3c;">
             <div class="quality-title">⚠️ На что обратить внимание</div>
             <div class="quality-text"><?= $interpretation['warning'] ?></div>
         </div>
         
-        <!-- Камень и цвет -->
+        <!-- ==================== КАМЕНЬ И ЦВЕТ ==================== -->
         <div style="display: flex; gap: 20px; flex-wrap: wrap; margin: 20px 0 30px;">
             <div style="background: #f9f5f0; border-radius: 20px; padding: 15px 25px; border: 1px solid #f0e4d6; flex: 1;">
                 <strong style="color: #8b5f9e;">💎 Камень месяца:</strong> <?= $interpretation['stone'] ?>
@@ -267,13 +303,13 @@ unset($_SESSION['month_result_sup']);
             </div>
         </div>
         
-        <!-- Действие -->
+        <!-- ==================== ДЕЙСТВИЕ ==================== -->
         <div class="highlight-box">
             <div style="font-size: 24px; margin-bottom: 8px;">⚡ Ваше действие на этот месяц</div>
             <div style="font-size: 18px; color: #3b2b22; font-weight: 500;"><?= $interpretation['action'] ?></div>
         </div>
         
-        <!-- Ключевые числа -->
+        <!-- ==================== КЛЮЧЕВЫЕ ЧИСЛА ==================== -->
         <h2 class="matrix-title"><i class="fas fa-magic"></i> Ключевые числа</h2>
         <div class="numbers-grid-result">
             <div class="number-card-result">
@@ -298,7 +334,7 @@ unset($_SESSION['month_result_sup']);
             </div>
         </div>
         
-        <!-- Дополнительные контрольные числа -->
+        <!-- ==================== ДОПОЛНИТЕЛЬНЫЕ КОНТРОЛЬНЫЕ ЧИСЛА ==================== -->
         <h2 class="matrix-title"><i class="fas fa-chart-bar"></i> Дополнительные контрольные числа</h2>
         <div class="numbers-grid-result">
             <div class="number-card-result">
@@ -333,25 +369,60 @@ unset($_SESSION['month_result_sup']);
             </div>
         </div>
         
-        <!-- Прогноз по сферам жизни -->
+        <!-- ==================== ПРОГНОЗ ПО СФЕРАМ ЖИЗНИ ==================== -->
         <h2 class="matrix-title"><i class="fas fa-chart-line"></i> Прогноз по сферам жизни</h2>
         
-        <div class="quality-card">
-            <div class="quality-title">💼 Карьера и бизнес</div>
-            <div class="quality-text"><?= $interpretation['finance'] ?></div>
+        <div class="sector-grid">
+            <!-- Карьера -->
+            <div class="sector-card">
+                <div class="sector-title">💼 Карьера и бизнес</div>
+                <div class="sector-text"><?= $interpretation['career'] ?? $interpretation['finance'] ?></div>
+            </div>
+            
+            <!-- Финансы -->
+            <div class="sector-card">
+                <div class="sector-title">💰 Финансы и деньги</div>
+                <div class="sector-text"><?= $interpretation['money'] ?? $interpretation['finance'] ?></div>
+            </div>
+            
+            <!-- Любовь -->
+            <div class="sector-card">
+                <div class="sector-title">❤️ Любовь и отношения</div>
+                <div class="sector-text"><?= $interpretation['love'] ?></div>
+            </div>
+            
+            <!-- Семья -->
+            <div class="sector-card">
+                <div class="sector-title">🏠 Семья</div>
+                <div class="sector-text"><?= $interpretation['family'] ?? 'Время для укрепления семейных уз и создания домашнего уюта.' ?></div>
+            </div>
+            
+            <!-- Друзья -->
+            <div class="sector-card">
+                <div class="sector-title">🤝 Друзья</div>
+                <div class="sector-text"><?= $interpretation['friends'] ?? 'Окружите себя верными друзьями и будьте открыты к новым знакомствам.' ?></div>
+            </div>
+            
+            <!-- Здоровье -->
+            <div class="sector-card">
+                <div class="sector-title">🏥 Здоровье</div>
+                <div class="sector-text"><?= $interpretation['health'] ?? 'Уделите внимание своему самочувствию и регулярно отдыхайте.' ?></div>
+            </div>
+            
+            <!-- Творчество -->
+            <div class="sector-card">
+                <div class="sector-title">🎨 Творчество</div>
+                <div class="sector-text"><?= $interpretation['creativity'] ?? 'Вдохновение придёт к вам в этом месяце, не упустите его.' ?></div>
+            </div>
+            
+            <!-- Обучение -->
+            <div class="sector-card">
+                <div class="sector-title">📚 Обучение</div>
+                <div class="sector-text"><?= $interpretation['learning'] ?? 'Это хорошее время для получения новых знаний и навыков.' ?></div>
+            </div>
         </div>
         
-        <div class="quality-card">
-            <div class="quality-title">❤️ Любовь и отношения</div>
-            <div class="quality-text"><?= $interpretation['love'] ?></div>
-        </div>
-        
-        <div class="quality-card">
-            <div class="quality-title">🧘 Главный совет</div>
-            <div class="quality-text"><?= $interpretation['advice'] ?></div>
-        </div>
-        
-        <!-- Прогноз по неделям -->
+        <!-- ==================== ПРОГНОЗ ПО НЕДЕЛЯМ ==================== -->
         <h2 class="matrix-title"><i class="fas fa-calendar-week"></i> Прогноз по неделям</h2>
         <div class="week-grid-result">
             <?php 
@@ -367,7 +438,7 @@ unset($_SESSION['month_result_sup']);
             <?php endfor; ?>
         </div>
         
-        <!-- Прогноз по дням -->
+        <!-- ==================== ПРОГНОЗ ПО ДНЯМ ==================== -->
         <h2 class="matrix-title"><i class="fas fa-calendar-day"></i> Прогноз по дням</h2>
         <div class="day-grid-result">
             <?php 
@@ -382,7 +453,7 @@ unset($_SESSION['month_result_sup']);
             <?php endfor; ?>
         </div>
         
-        <!-- Исходные данные -->
+        <!-- ==================== ИСХОДНЫЕ ДАННЫЕ ==================== -->
         <h2 class="matrix-title"><i class="fas fa-database"></i> Исходные данные расчёта</h2>
         <div class="info-block-custom" style="background: #f9f5f0; border-radius: 20px; padding: 20px; margin-bottom: 40px;">
             <div class="info-row" style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e0d5c8;">
@@ -407,9 +478,9 @@ unset($_SESSION['month_result_sup']);
             </div>
         </div>
         
-        <!-- Кнопки действий -->
+        <!-- ==================== КНОПКИ ДЕЙСТВИЙ ==================== -->
         <div class="action-buttons no-print">
-            <a href="personal-month-form-sup.php" class="btn btn-primary">
+            <a href="personal-month-form-supp.php" class="btn btn-primary">
                 <i class="fas fa-redo"></i> Новый расчёт
             </a>
             <button onclick="window.print()" class="btn btn-primary" style="background: #9b59b6;">
@@ -417,7 +488,7 @@ unset($_SESSION['month_result_sup']);
             </button>
         </div>
         
-        <!-- Футер -->
+        <!-- ==================== ФУТЕР ==================== -->
         <div class="footer-pif">
             <p><i class="far fa-clock"></i> Расчёт выполнен: <?= date('d.m.Y H:i:s') ?></p>
             <p>© <?= date('Y') ?> Персональный месяц | Нумерологический прогноз</p>
