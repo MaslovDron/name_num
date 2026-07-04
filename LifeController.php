@@ -74,20 +74,53 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['FrLifeChart'])) {
     // ============================================
     // ШАГ 7: Формируем результат
     // ============================================
-    $resultData = [
-        'years' => $years,
-        'values' => $values,
-        'digits' => $digits,
-        'digits_clean' => $digitsClean,
-        'base_number' => $baseNumber,
-        'day' => $day,
-        'month' => $month,
-        'year' => $year
-    ];
-    
-    $showResult = true;
-            }
-            include 'app/include/life-interpritation-front.php';
+ include 'app/include/life-interpritation-front.php';
+        
+        $periods = [];
+        foreach ($values as $value) {
+            $periods[] = getFullInterpretation($value);
+        }
+        
+        // ============================================
+        // СТАТИСТИКА
+        // ============================================
+        $maxVal = max($values);
+        $minVal = min($values);
+        $avgVal = round(array_sum($values) / count($values), 1);
+        
+        $maxIndex = array_search($maxVal, $values);
+        $minIndex = array_search($minVal, $values);
+        
+        $stats = [
+            'max' => $maxVal,
+            'max_age' => $years[$maxIndex],
+            'min' => $minVal,
+            'min_age' => $years[$minIndex],
+            'average' => $avgVal,
+            'trend' => $values[count($values)-1] > $values[0] ? 'rising' : 
+                       ($values[count($values)-1] < $values[0] ? 'falling' : 'stable')
+        ];
+        
+        // ============================================
+        // ФОРМИРУЕМ РЕЗУЛЬТАТ
+        // ============================================
+        $resultData = [
+            'years' => $years,
+            'values' => $values,
+            'digits' => $digits,
+            'digits_clean' => $digitsClean,
+            'base_number' => $baseNumber,
+            'day' => $day,
+            'month' => $month,
+            'year' => $year,
+            'periods' => $periods,
+            'stats' => $stats
+        ];
+        
+        $showResult = true;
+    }
 }
+
+            
 //фронт
 ?>
