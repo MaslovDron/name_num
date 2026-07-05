@@ -100,24 +100,54 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['FrLifeChart'])) {
             'trend' => $values[count($values)-1] > $values[0] ? 'rising' : 
                        ($values[count($values)-1] < $values[0] ? 'falling' : 'stable')
         ];
-        
-        // ============================================
-        // ФОРМИРУЕМ РЕЗУЛЬТАТ
-        // ============================================
-        $resultData = [
-            'years' => $years,
-            'values' => $values,
-            'digits' => $digits,
-            'digits_clean' => $digitsClean,
-            'base_number' => $baseNumber,
+         // ---- МЕСЯЦА ДЛЯ ФОРМАТИРОВАНИЯ ДАТЫ ----
+    $months = [
+        1 => 'января', 2 => 'февраля', 3 => 'марта',
+        4 => 'апреля', 5 => 'мая', 6 => 'июня',
+        7 => 'июля', 8 => 'августа', 9 => 'сентября',
+        10 => 'октября', 11 => 'ноября', 12 => 'декабря'
+    ];
+    
+    // ============================================
+    // 3. СОХРАНЯЕМ РЕЗУЛЬТАТ В СЕССИЮ
+    // ============================================
+    $_SESSION['life_chart_result'] = [
+        'birthdate' => $birthDate,
+        'day' => $day,
+        'month' => $month,
+        'year' => $year,
+        'formatted_date' => $day . ' ' . $months[$month] . ' ' . $year . ' года',
+        'base_number' => $baseNumber,
+        'digits' => $digits,
+        'digits_clean' => $digitsClean,
+        'digits_display' => implode(' → ', $digitsClean),
+        'years' => $years,
+        'values' => $values,
+        'periods' => $periods,
+        'stats' => $stats,
+        'calculation_details' => [
             'day' => $day,
             'month' => $month,
             'year' => $year,
-            'periods' => $periods,
-            'stats' => $stats
-        ];
-        
-        $showResult = true;
+            'base_number' => $baseNumber,
+            'digits_raw' => implode(' × ', $digits),
+            'digits_clean' => implode(' → ', $digitsClean)
+        ]
+    ];
+    
+    // Сохраняем дату для формы
+    $_SESSION['life_chart_birthdate'] = $birthDate;
+    //$_SESSION['life_chart_consent'] = 'checked';
+    
+    // Очищаем ошибки
+    //unset($_SESSION['life_chart_error']);
+    
+    // ============================================
+    // 4. РЕДИРЕКТ НА СТРАНИЦУ РЕЗУЛЬТАТА
+    // ============================================
+    header('Location: ' . ABS_PATH . 'life-chart');
+    exit;
+
     }
 }
 
