@@ -57,7 +57,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['FrLifeChart'])) {
                     $digitsClean = [1, 2, 3, 4, 5];
                 }
                // tt($digitsClean);
-               $years = range(0, 60, 6);//разбиваем число на периоды по 6
+              // $years = range(0, 60, 6);//разбиваем число на периоды по 6
+              $years = range(1, 61, 6);
                 // Результат: [0, 6, 12, 18, 24, 30, 36, 42, 48, 54, 60]
                 //tt($years);
                    $values = [];
@@ -74,6 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['FrLifeChart'])) {
     // ============================================
     // ШАГ 7: Формируем результат
     // ============================================
+     
  include 'app/include/life-interpritation-front.php';
         
         $periods = [];
@@ -138,19 +140,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['FrLifeChart'])) {
     // Сохраняем дату для формы
     $_SESSION['life_chart_birthdate'] = $birthDate;
     //$_SESSION['life_chart_consent'] = 'checked';
-    
+   // tte($_SESSION);
     // Очищаем ошибки
     //unset($_SESSION['life_chart_error']);
     
     // ============================================
     // 4. РЕДИРЕКТ НА СТРАНИЦУ РЕЗУЛЬТАТА
     // ============================================
-    header('Location: ' . ABS_PATH . 'life-chart');
-    exit;
+     header('Location: ' . ABS_PATH . 'life-chart');
+     exit;
 
     }
-}
-
-            
+}           
 //фронт
+//бэк
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['BackLifeCalc'])) {
+    //tt($_POST);
+         $birthDate = $_POST['daterozd'];
+       if (empty($birthDate)) {
+        $errMsg .='Вы не ввели дату рождения<br>';
+    }
+        // 2. Валидация даты
+    $date = DateTime::createFromFormat('Y-m-d', $birthDate);
+    $period=$_POST['period'];
+       if (empty($period)) {
+        $errMsg .='Не задан период<br>';
+    }
+}
+//бэк
 ?>
