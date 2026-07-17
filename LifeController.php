@@ -766,6 +766,7 @@ file_put_contents($filepath, $html_content);
         
         // ---- 11. СОХРАНЯЕМ В СЕССИЮ (как в MonthController) ----
         $_SESSION['life_chart_result_sup'] = $resultData;
+        $_SESSION['file_url']=$file_url;
         
         // ---- 12. РЕДИРЕКТ НА СТРАНИЦУ РЕЗУЛЬТАТА ----
         header('Location: ' . ABS_PATH . 'supp/life-chart-result-sup.php');
