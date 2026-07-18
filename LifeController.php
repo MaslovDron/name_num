@@ -267,7 +267,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['BackLifeCalc'])) {
             ]
         ];
         //формируем html файл
-        $periodsUltimate = [];
+         $periodsUltimate = [];
     foreach ($values as $value) {
     $periodsUltimate[] = getUltimateInterpretation($value);
     }
@@ -300,6 +300,7 @@ ob_start();
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         /* ===== ОСНОВНЫЕ СТИЛИ ===== */
+        
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: linear-gradient(145deg, #fefaf4 0%, #f9f2ea 100%); font-family: 'Georgia', 'Times New Roman', serif; color: #2c2c2c; line-height: 1.6; }
         .container { max-width: 1200px; margin: 0 auto; padding: 20px 20px 40px; }
@@ -763,10 +764,12 @@ function getAgeWord(age) {
 <?php
 $html_content = ob_get_clean();
 file_put_contents($filepath, $html_content);
-        
+
+        //формируем html файл
+           
         // ---- 11. СОХРАНЯЕМ В СЕССИЮ (как в MonthController) ----
         $_SESSION['life_chart_result_sup'] = $resultData;
-        $_SESSION['file_url']=$file_url;
+        //$_SESSION['file_url']=$file_url;
         
         // ---- 12. РЕДИРЕКТ НА СТРАНИЦУ РЕЗУЛЬТАТА ----
         header('Location: ' . ABS_PATH . 'supp/life-chart-result-sup.php');
