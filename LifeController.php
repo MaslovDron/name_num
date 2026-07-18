@@ -214,21 +214,69 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['BackLifeCalc'])) {
         }
         
         // ---- 8. СТАТИСТИКА ----
+        // $maxVal = max($values);
+        // $minVal = min($values);
+        // $avgVal = round(array_sum($values) / count($values), 1);
+        
+        // $maxIndex = array_search($maxVal, $values);
+        // $minIndex = array_search($minVal, $values);
+        
+        // $stats = [
+        //     'max' => $maxVal,
+        //     'max_age' => $years[$maxIndex],
+        //     'min' => $minVal,
+        //     'min_age' => $years[$minIndex],
+        //     'average' => $avgVal,
+        //     'trend' => $values[count($values)-1] > $values[0] ? 'rising' : 
+        //                ($values[count($values)-1] < $values[0] ? 'falling' : 'stable')
+        // ];
         $maxVal = max($values);
         $minVal = min($values);
         $avgVal = round(array_sum($values) / count($values), 1);
-        
-        $maxIndex = array_search($maxVal, $values);
-        $minIndex = array_search($minVal, $values);
-        
+
+        // ---- НАХОДИМ ВСЕ ПИКИ (значение >= 7) ----
+        $peaks = [];
+        foreach ($years as $index => $age) {
+            if ($values[$index] >= 7) {
+                $peaks[] = [
+                    'age' => $age,
+                    'value' => $values[$index],
+                    'index' => $index
+                ];
+            }
+        }
+
+        // ---- НАХОДИМ ВСЕ СПАДЫ (значение <= 3) ----
+        $lows = [];
+        foreach ($years as $index => $age) {
+            if ($values[$index] <= 3) {
+                $lows[] = [
+                    'age' => $age,
+                    'value' => $values[$index],
+                    'index' => $index
+                ];
+            }
+        }
+
+        // ---- ОПРЕДЕЛЯЕМ ТРЕНД ----
+        $firstVal = $values[0];
+        $lastVal = $values[count($values) - 1];
+        if ($lastVal > $firstVal) {
+            $trend = 'rising';
+        } elseif ($lastVal < $firstVal) {
+            $trend = 'falling';
+        } else {
+            $trend = 'stable';
+        }
+
+        // ---- СОБИРАЕМ ВСЁ В МАССИВ ----
         $stats = [
-            'max' => $maxVal,
-            'max_age' => $years[$maxIndex],
-            'min' => $minVal,
-            'min_age' => $years[$minIndex],
-            'average' => $avgVal,
-            'trend' => $values[count($values)-1] > $values[0] ? 'rising' : 
-                       ($values[count($values)-1] < $values[0] ? 'falling' : 'stable')
+            'max' => $maxVal,           // максимальное значение (глобальный пик)
+            'min' => $minVal,           // минимальное значение (глобальный спад)
+            'average' => $avgVal,       // среднее значение
+            'trend' => $trend,          // тренд: rising, falling, stable
+            'peaks' => $peaks,          // ВСЕ пики (массив с age и value)
+            'lows' => $lows             // ВСЕ спады (массив с age и value)
         ];
         
         // ---- 9. МЕСЯЦА ДЛЯ ФОРМАТИРОВАНИЯ ДАТЫ ----
@@ -287,6 +335,22 @@ $file_url = ABS_PATH . "results/" . $filename;
 // ГЕНЕРАЦИЯ HTML-КОНТЕНТА
 // ============================================================
 ob_start();
+//склоняем год
+function getAgeWord($age) {
+    $lastDigit = $age % 10;
+    $lastTwoDigits = $age % 100;
+    if ($lastTwoDigits >= 11 && $lastTwoDigits <= 14) {
+        return 'лет';
+    }
+    if ($lastDigit == 1) {
+        return 'год';
+    } elseif ($lastDigit >= 2 && $lastDigit <= 4) {
+        return 'года';
+    } else {
+        return 'лет';
+    }
+}
+//склоняем год
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -769,7 +833,7 @@ file_put_contents($filepath, $html_content);
            
         // ---- 11. СОХРАНЯЕМ В СЕССИЮ (как в MonthController) ----
         $_SESSION['life_chart_result_sup'] = $resultData;
-        //$_SESSION['file_url']=$file_url;
+        $_SESSION['file_url']=$file_url;
         
         // ---- 12. РЕДИРЕКТ НА СТРАНИЦУ РЕЗУЛЬТАТА ----
         header('Location: ' . ABS_PATH . 'supp/life-chart-result-sup.php');
